@@ -1,0 +1,97 @@
+/* ========================================
+   CSS VARIABLES & THEME CONFIGURATION
+   ======================================== */
+
+:root {
+    /* Primary Colors */
+    --primary-color: #00f2fe;
+    --secondary-color: #9d4edd;
+    --accent-color: #4facfe;
+
+    /* Background Colors */
+    --bg-dark: #05050a;
+    --bg-card: rgba(15, 23, 42, 0.45);
+    --bg-card-solid: #0d0d18;
+
+    /* Text Colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Glassmorphism Configuration */
+    --glass-bg: rgba(15, 23, 42, 0.35);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(0, 242, 254, 0.3);
+    --glass-blur: blur(12px);
+
+    /* Gradients */
+    --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(157, 78, 221, 0.15) 100%);
+    --gradient-text: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #9d4edd 100%);
+
+    /* Effects & Shadows */
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glow: 0 0 25px rgba(0, 242, 254, 0.25);
+    --glow-secondary: 0 0 25px rgba(157, 78, 221, 0.25);
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+    --border-radius-sm: 8px;
+
+    /* Transitions */
+    --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Spacing Scale (8pt grid) */
+    --space-2xs: 0.25rem;
+    /* 4px */
+    --space-xs: 0.5rem;
+    /* 8px */
+    --space-sm: 0.75rem;
+    /* 12px */
+    --space-md: 1rem;
+    /* 16px */
+    --space-lg: 1.5rem;
+    /* 24px */
+    --space-xl: 2rem;
+    /* 32px */
+    --space-2xl: 3rem;
+    /* 48px */
+    --space-3xl: 4rem;
+    /* 64px */
+    --space-4xl: 6rem;
+    /* 96px */
+
+    /* Typography Scale */
+    --font-family-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-mono: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, monospace;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.875rem;
+    --font-size-3xl: 2.25rem;
+    --font-size-4xl: 3rem;
+    --font-size-5xl: 3.75rem;
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+
+    /* Sizing & Layout Constants */
+    --container-max-width: 1200px;
+    --header-height: 80px;
+    --header-height-mobile: 70px;
+}
+

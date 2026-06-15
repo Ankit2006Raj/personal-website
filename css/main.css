@@ -1,0 +1,35 @@
+/**
+ * Main CSS File - Imports all stylesheets
+ * This is the single entry point for all styles
+ */
+
+/* Base Styles */
+@import url('reset.css');
+@import url('variables.css');
+@import url('base.css');
+
+/* Components */
+@import url('components.css');
+@import url('animations.css');
+
+/* Layout */
+@import url('navigation.css');
+@import url('loader.css');
+
+/* Sections */
+@import url('sections/hero.css');
+@import url('sections/about.css');
+@import url('sections/projects.css');
+@import url('sections/experience.css');
+@import url('sections/skills.css');
+@import url('sections/contact.css');
+@import url('sections/footer.css');
+
+/* Modals & Overlays */
+@import url('modals.css');
+
+/* Responsive Design */
+@import url('responsive.css');
+
+/* Legacy styles (if needed) */
+/* @import url('../style.css'); */

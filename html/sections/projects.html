@@ -1,0 +1,398 @@
+<section class="projects-section-modern" id="projects">
+    <div class="container">
+        <h2 class="section-title">Engineering Showcase</h2>
+        <p class="section-subtitle">Production-ready platforms and data solutions built to address real-world challenges
+        </p>
+
+        <!-- Compact Project Stats -->
+        <div class="project-stats-mini">
+            <div class="stat-project"><span class="num">12</span><span class="lbl">Total Projects</span></div>
+            <div class="stat-project"><span class="num">6</span><span class="lbl">AI/ML Projects</span></div>
+            <div class="stat-project"><span class="num">6</span><span class="lbl">Full-Stack Apps</span></div>
+            <div class="stat-project"><span class="num">95.8%</span><span class="lbl">Max Accuracy</span></div>
+        </div>
+
+        <!-- Modern Tab Navigation -->
+        <div class="project-tabs-modern">
+            <div class="tabs-slider-pill"></div>
+            <button class="project-tab active" data-category="ai-ml">
+                <i class="fas fa-brain"></i>
+                <span>AI & Machine Learning</span>
+                <span class="count">6</span>
+            </button>
+            <button class="project-tab" data-category="fullstack">
+                <i class="fas fa-code"></i>
+                <span>Full-Stack Development</span>
+                <span class="count">6</span>
+            </button>
+        </div>
+
+        <!-- AI/ML Projects Container -->
+        <div class="projects-container active" data-category="ai-ml">
+            <div class="category-intro">
+                <div class="intro-icon"><i class="fas fa-brain"></i></div>
+                <div class="intro-text">
+                    <h3>AI & Machine Learning Systems</h3>
+                    <p>Intelligent platforms leveraging deep learning models, natural language processing, and
+                        predictive diagnostics.</p>
+                </div>
+            </div>
+
+            <div class="projects-grid-compact">
+                <!-- Project 1: ResumeInsight -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop"
+                            alt="ResumeInsight" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('resume-insight')" class="link-compact"
+                                title="View Details"><i class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span class="badge-live">ATS ENGINE</span>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>ResumeInsight Platform</h4>
+                        <p>AI Resume Analysis Engine integrated with Google Gemini AI for automated ATS score prediction
+                            and feedback tuning.</p>
+                        <div class="tech-mini">
+                            <span>Flask</span><span>Gemini AI</span><span>Docker</span><span>SQLAlchemy</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-check-circle"></i> 95.8% Match</span>
+                            <span><i class="fas fa-server"></i> 30+ APIs</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('resume-insight')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: WhatsApp Analyser -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=600&auto=format&fit=crop"
+                            alt="WhatsApp Analyser" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('whatsapp-analyser')" class="link-compact"
+                                title="View Details"><i class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span class="badge-live">NLP</span>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>WhatsApp Chat Analyser</h4>
+                        <p>Text pipeline parsing conversation exports for messaging heatmaps, user frequency analysis,
+                            and VADER sentiment trends.</p>
+                        <div class="tech-mini">
+                            <span>Python</span><span>NLP</span><span>Streamlit</span><span>Pandas</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-chart-line"></i> Sentiment</span>
+                            <span><i class="fas fa-comments"></i> 50k+ Messages</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('whatsapp-analyser')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Jarvis AI -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=600&auto=format&fit=crop"
+                            alt="Jarvis AI" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('jarvis-ai')" class="link-compact" title="View Details"><i
+                                    class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Jarvis Voice Assistant</h4>
+                        <p>Voice-activated automation assistant running local threads for custom OS commands, search
+                            triggers, and speech parsing.</p>
+                        <div class="tech-mini">
+                            <span>Python</span><span>SpeechRecognition</span><span>NLP</span><span>OS API</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-microphone"></i> Voice Control</span>
+                            <span><i class="fas fa-bolt"></i> Low Latency</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('jarvis-ai')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: DataVista -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
+                            alt="DataVista" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('datavista')" class="link-compact" title="View Details"><i
+                                    class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>DataVista Analytics</h4>
+                        <p>Automated Exploratory Data Analysis (EDA) dashboard constructing Plotly heatmaps and
+                            statistical profiles dynamically.</p>
+                        <div class="tech-mini">
+                            <span>Dash</span><span>Plotly</span><span>Scikit-Learn</span><span>Pandas</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-chart-bar"></i> Auto EDA</span>
+                            <span><i class="fas fa-clock"></i> Saves Hours</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('datavista')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: AI Symptom Analyser -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop"
+                            alt="AI Health" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('ai-health')" class="link-compact" title="View Details"><i
+                                    class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span class="badge-live">TRIAGE AI</span>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>AI Symptom Analyser</h4>
+                        <p>Machine learning triage platform mapping patient symptom vectors to primary clinical
+                            conditions for routing advice.</p>
+                        <div class="tech-mini">
+                            <span>Flask</span><span>Scikit-Learn</span><span>Bootstrap</span><span>Python</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-heartbeat"></i> 40+ Profiles</span>
+                            <span><i class="fas fa-shield-alt"></i> Triage Advice</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('ai-health')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: House Price Prediction -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=600&auto=format&fit=crop"
+                            alt="House Price" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <button onclick="openProjectModal('house-price')" class="link-compact"
+                                title="View Details"><i class="fas fa-search-plus"></i></button>
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>House Price prediction</h4>
+                        <p>Real estate value forecast engine utilizing XGBoost regression pipelines with advanced L2
+                            feature regularization.</p>
+                        <div class="tech-mini">
+                            <span>XGBoost</span><span>Scikit-Learn</span><span>Flask</span><span>Pandas</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-check-circle"></i> 95.8% R² Score</span>
+                            <span><i class="fas fa-calculator"></i> Price Forecast</span>
+                        </div>
+                        <div class="project-card-action">
+                            <button onclick="openProjectModal('house-price')" class="btn btn-small btn-primary">
+                                <span>View Case Study</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-Stack Projects Container -->
+        <div class="projects-container" data-category="fullstack">
+            <div class="category-intro">
+                <div class="intro-icon"><i class="fas fa-code"></i></div>
+                <div class="intro-text">
+                    <h3>Full-Stack Application Showcase</h3>
+                    <p>Robust web applications built with modern frontend frameworks and relational/non-relational
+                        database services.</p>
+                </div>
+            </div>
+
+            <div class="projects-grid-compact">
+                <!-- Project 7: Portfolio -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop"
+                            alt="Portfolio" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span class="badge-live">LIVE</span>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Developer Portfolio</h4>
+                        <p>Modern dark glassmorphic engineering portfolio. Asynchronous dynamic component load
+                            configuration for load optimization.</p>
+                        <div class="tech-mini">
+                            <span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Particles.js</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-mobile-alt"></i> Responsive</span>
+                            <span><i class="fas fa-bolt"></i> Async Load</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: E-Commerce Platform -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=600&auto=format&fit=crop"
+                            alt="E-Commerce" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>E-Commerce Platform</h4>
+                        <p>Django online store including product management dashboards, shopping carts, and checkout
+                            pipelines via Stripe.</p>
+                        <div class="tech-mini">
+                            <span>Django</span><span>PostgreSQL</span><span>Stripe API</span><span>Bootstrap</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-shopping-cart"></i> Cart Logic</span>
+                            <span><i class="fas fa-credit-card"></i> Pay Tunnel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9: Task Management App -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=600&auto=format&fit=crop"
+                            alt="Task Manager" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Task Management App</h4>
+                        <p>Collaborative project board with user login authorizations, task states updates, and team
+                            assignment layouts.</p>
+                        <div class="tech-mini">
+                            <span>React</span><span>Node.js</span><span>MongoDB</span><span>Express</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-tasks"></i> Kanban Board</span>
+                            <span><i class="fas fa-users"></i> Multi-User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10: Blog Platform -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop"
+                            alt="Blog" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Blog Platform</h4>
+                        <p>Content system supporting Markdown rendering, comment segments, categorizations, and metadata
+                            tags.</p>
+                        <div class="tech-mini">
+                            <span>Flask</span><span>MySQL</span><span>CKEditor</span><span>HTML5</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-blog"></i> CMS</span>
+                            <span><i class="fas fa-search"></i> SEO Optimised</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11: Weather Dashboard -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=600&auto=format&fit=crop"
+                            alt="Weather" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Weather Dashboard</h4>
+                        <p>Responsive location weather forecast tracker calling OpenWeather APIs to render multi-day
+                            chart trends.</p>
+                        <div class="tech-mini">
+                            <span>React</span><span>OpenWeather API</span><span>Chart.js</span><span>CSS3</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-cloud-sun"></i> Live API</span>
+                            <span><i class="fas fa-map-marked-alt"></i> Location Forecast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12: Social Media Dashboard -->
+                <div class="project-card-compact">
+                    <div class="project-img-compact">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop"
+                            alt="Social" width="400" height="250" loading="lazy">
+                        <div class="project-overlay-compact">
+                            <a href="https://github.com/Ankit2006Raj" target="_blank" class="link-compact"
+                                title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-body-compact">
+                        <h4>Social Analytics Board</h4>
+                        <p>Metrics panel aggregating social post statistics and showing visual line plots using Firebase
+                            database collections.</p>
+                        <div class="tech-mini">
+                            <span>Vue.js</span><span>Firebase</span><span>D3.js</span><span>Tailwind CSS</span>
+                        </div>
+                        <div class="metrics-mini">
+                            <span><i class="fas fa-chart-line"></i> Analytics</span>
+                            <span><i class="fas fa-share-alt"></i> Firebase DB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

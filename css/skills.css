@@ -1,0 +1,231 @@
+/* ========================================
+   SKILLS SECTION
+   ======================================== */
+
+.skills-modern {
+    padding: 6rem 0;
+    background: var(--bg-card);
+}
+
+/* Compact Stats */
+.skills-stats-mini {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--bg-dark);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+
+.stat-box:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.stat-box i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.stat-box span {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Tab Navigation */
+.skills-tabs-mini {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.tab-mini {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--bg-dark);
+    border: 2px solid rgba(0, 217, 255, 0.2);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.tab-mini:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.tab-mini.active {
+    background: var(--gradient);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Compact Skills Grid */
+.skills-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.skill-card-mini {
+    background: var(--bg-dark);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+
+.skill-card-mini.hidden {
+    display: none;
+}
+
+.skill-card-mini:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--glow);
+    transform: translateY(-5px);
+}
+
+.card-head-mini {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+}
+
+.card-head-mini i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.card-head-mini h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.skills-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 217, 255, 0.05);
+    border: 1px solid rgba(0, 217, 255, 0.1);
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.chip::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: linear-gradient(90deg, rgba(0, 217, 255, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+    transition: width 1s ease;
+    z-index: 0;
+}
+
+.chip span {
+    position: relative;
+    z-index: 1;
+}
+
+.chip span:first-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.chip .lvl {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.chip:hover {
+    background: rgba(0, 217, 255, 0.1);
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Tech Cloud Mini */
+.tech-cloud-mini {
+    background: var(--bg-dark);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.tech-cloud-mini h3 {
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tech-cloud-mini h3 i {
+    color: var(--primary-color);
+}
+
+.tech-flow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.tech-badge-mini {
+    background: rgba(0, 217, 255, 0.1);
+    color: var(--primary-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    border: 1px solid var(--primary-color);
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.tech-badge-mini:hover {
+    background: var(--gradient);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--glow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .skills-grid-mini {
+        grid-template-columns: 1fr;
+    }
+}
