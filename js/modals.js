@@ -8,18 +8,18 @@ const projectDatabase = {
         title: "ResumeInsight: AI Resume Analysis Platform",
         categoryText: "AI & Machine Learning",
         keyMetric: "95.8% ATS Scoring Accuracy",
-        image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=800&auto=format&fit=crop",
-        challenge: "Recruiters spend an average of 6 seconds skimming a resume. Job applicants have difficulty aligning their resumes with modern ATS (Applicant Tracking Systems) parsing software, leading to a high rejection rate even for highly qualified candidates.",
-        solution: "Built a Python-Flask platform integrated with Google Gemini AI to analyze resumes against specific job descriptions. Engineered feature extracting pipelines using NLP, returning matching scores, key missing keywords, and specific guidelines for ATS optimization.",
+        image: "./assets/images/projects/resume_insight.png",
+        challenge: "In today's highly competitive job market, candidates often face immediate rejection by Applicant Tracking Systems (ATS) due to poor keyword optimization, while recruiters waste countless hours manually parsing unqualified resumes.",
+        solution: "Architected an elite, end-to-end Python/Flask AI platform integrated seamlessly with Google Gemini. Engineered advanced NLP pipelines to dynamically extract critical resume features, compute semantic matching scores against job descriptions, and deliver highly targeted, actionable optimization strategies.",
         accomplishments: [
-            "Achieved a 95.8% ATS compatibility analysis accuracy matching.",
-            "Designed and deployed 30+ clean, robust REST APIs with Flask-SQLAlchemy.",
-            "Dockerized the system for streamlined containerized microservice deployments."
+            "Achieved an unparalleled 95.8% ATS compatibility analysis accuracy, massively boosting interview shortlists.",
+            "Designed and deployed 30+ highly robust, secure REST APIs utilizing Flask-SQLAlchemy and JWT authentication.",
+            "Fully containerized the microservices architecture via Docker, ensuring streamlined deployments and 99.9% uptime."
         ],
         tags: ["Flask", "Gemini AI", "SQLAlchemy", "Docker", "Python", "NLP"],
         codeSnippet: `import google.generativeai as genai\n\ndef analyze_resume(resume_text, job_desc):\n    # Initialize Google Gemini model API\n    model = genai.GenerativeModel("gemini-1.5-flash")\n    prompt = f"""\n    Analyze the following resume against the job description.\n    Resume: {resume_text}\n    Job Desc: {job_desc}\n    Provide matching score, keywords missing, and bullet modifications.\n    """\n    response = model.generate_content(prompt)\n    return response.text`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://resume-insight-xi.vercel.app/",
+        githubLink: "https://github.com/Ankit2006Raj/RESUME-INSIGHT"
     },
     'whatsapp-analyser': {
         title: "WhatsApp Chat Analyser",
@@ -113,7 +113,7 @@ function openProjectModal(projectId) {
     console.log('Opening project case study modal for:', projectId);
     const modal = document.getElementById('projectModal');
     const modalBody = document.getElementById('projectModalBody');
-    
+
     if (!modal || !modalBody) {
         console.error('Project modal elements not found in DOM');
         return;

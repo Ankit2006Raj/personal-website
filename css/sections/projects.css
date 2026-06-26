@@ -159,8 +159,8 @@
 
 .projects-grid-compact {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 /* Glass Project Cards */
@@ -184,7 +184,7 @@
 
 .project-img-compact {
     position: relative;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
     border-bottom: 1px solid var(--glass-border);
     background: rgba(0, 0, 0, 0.2);
@@ -258,7 +258,7 @@
 }
 
 .project-body-compact {
-    padding: 1.5rem;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -318,12 +318,41 @@
 
 .project-card-action {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    gap: 0.5rem;
 }
 
-.project-card-action .btn {
-    width: 100%;
+.project-card-action .btn-details {
+    flex: 1;
+}
+
+.action-links-compact {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.action-links-compact .btn-icon-only {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.action-links-compact .btn-icon-only:hover {
+    background: var(--gradient);
+    color: #05050a;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
 }
 
 /* Responsive */
@@ -344,3 +373,4 @@
         gap: 1rem;
     }
 }
+
