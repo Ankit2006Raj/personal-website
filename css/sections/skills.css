@@ -1,17 +1,35 @@
 /* ========================================
-   SKILLS & CAPABILITIES SECTION (PREMIUM)
+   SKILLS & CAPABILITIES SECTION (ULTRA PREMIUM)
    ======================================== */
 
 .skills-premium {
     padding: var(--spacing-xxl) 0;
     position: relative;
-    background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+    background: linear-gradient(to bottom, transparent, rgba(15, 17, 26, 0.8), transparent),
+                radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
+    overflow: hidden;
+}
+
+/* Glowing ambient orb in the center back */
+.skills-premium::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vh;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .skills-header-modern {
-    margin-bottom: 3.5rem;
+    margin-bottom: 4rem;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .section-number {
@@ -22,56 +40,70 @@
     letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .section-title-modern {
-    font-size: 2.8rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: #fff;
     margin: 0;
-    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 50%, #7dd3fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+    letter-spacing: -1px;
 }
 
 .tech-stack-grid {
     display: grid;
+    /* Ensure EXACTLY 4 columns on desktop */
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 1.8rem;
+    position: relative;
+    z-index: 2;
 }
 
 .tech-card {
-    background: rgba(15, 17, 26, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 1.8rem 1.5rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(20, 22, 35, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
+/* Animated gradient border pseudo-element */
 .tech-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.3;
+    transition: opacity 0.5s ease, background 0.5s ease;
     z-index: -1;
 }
 
 /* Base Hover Effect */
 .tech-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 255, 255, 0.05) inset;
+    background: rgba(25, 28, 45, 0.8);
 }
 
 .tech-card:hover::before {
@@ -81,258 +113,250 @@
 .tech-card-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .tech-card-header i {
-    font-size: 1.4rem;
-    width: 40px;
-    height: 40px;
+    font-size: 1.6rem;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tech-card:hover .tech-card-header i {
+    transform: scale(1.15) rotate(8deg);
 }
 
 .tech-card-header h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #f8fafc;
     letter-spacing: 0.15em;
     margin: 0;
     text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.7rem;
 }
 
 .tech-tag {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    color: #94a3b8;
-    transition: all 0.3s ease;
+    color: #cbd5e1;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     font-family: 'Fira Code', monospace;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
+    font-weight: 500;
 }
 
 .tech-tag i {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* 
  * CATEGORY SPECIFIC STYLING 
- * These apply gorgeous glowing colors to each card type on hover
+ * These apply stunning glowing colors and gradients to each card type on hover
  */
 
 /* 1. Languages: Blue */
 .card-lang:hover {
     border-color: rgba(56, 189, 248, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(56, 189, 248, 0.2);
 }
-
+.card-lang:hover::before { background: linear-gradient(135deg, #38bdf8, transparent); }
 .card-lang:hover .tech-card-header i {
-    background: rgba(56, 189, 248, 0.2);
-    color: #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-}
-
-.card-lang:hover .tech-card-header h3 {
-    color: #38bdf8;
-}
-
-.card-lang:hover .tech-tag:hover {
-    background: rgba(56, 189, 248, 0.15);
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(56, 189, 248, 0.05));
     color: #38bdf8;
     border-color: rgba(56, 189, 248, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+.card-lang:hover .tech-card-header h3 { color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+.card-lang:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), transparent);
+    color: #fff;
+    border-color: #38bdf8;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
 }
 
 /* 2. ML/Data: Purple/Pink */
 .card-ml:hover {
     border-color: rgba(217, 70, 239, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(217, 70, 239, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 70, 239, 0.2);
 }
-
+.card-ml:hover::before { background: linear-gradient(135deg, #d946ef, transparent); }
 .card-ml:hover .tech-card-header i {
-    background: rgba(217, 70, 239, 0.2);
-    color: #d946ef;
-    box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
-}
-
-.card-ml:hover .tech-card-header h3 {
-    color: #d946ef;
-}
-
-.card-ml:hover .tech-tag:hover {
-    background: rgba(217, 70, 239, 0.15);
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05));
     color: #d946ef;
     border-color: rgba(217, 70, 239, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
+}
+.card-ml:hover .tech-card-header h3 { color: #d946ef; text-shadow: 0 0 10px rgba(217, 70, 239, 0.4); }
+.card-ml:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.15), transparent);
+    color: #fff;
+    border-color: #d946ef;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(217, 70, 239, 0.3);
 }
 
 /* 3. Frameworks: Emerald Green */
 .card-fw:hover {
     border-color: rgba(16, 185, 129, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.2);
 }
-
+.card-fw:hover::before { background: linear-gradient(135deg, #10b981, transparent); }
 .card-fw:hover .tech-card-header i {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-}
-
-.card-fw:hover .tech-card-header h3 {
-    color: #10b981;
-}
-
-.card-fw:hover .tech-tag:hover {
-    background: rgba(16, 185, 129, 0.15);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
     color: #10b981;
     border-color: rgba(16, 185, 129, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+.card-fw:hover .tech-card-header h3 { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+.card-fw:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), transparent);
+    color: #fff;
+    border-color: #10b981;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
 /* 4. Databases: Orange/Yellow */
 .card-db:hover {
     border-color: rgba(245, 158, 11, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(245, 158, 11, 0.2);
 }
-
+.card-db:hover::before { background: linear-gradient(135deg, #f59e0b, transparent); }
 .card-db:hover .tech-card-header i {
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-}
-
-.card-db:hover .tech-card-header h3 {
-    color: #f59e0b;
-}
-
-.card-db:hover .tech-tag:hover {
-    background: rgba(245, 158, 11, 0.15);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
     color: #f59e0b;
     border-color: rgba(245, 158, 11, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+.card-db:hover .tech-card-header h3 { color: #f59e0b; text-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+.card-db:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), transparent);
+    color: #fff;
+    border-color: #f59e0b;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
 }
 
 /* 5. Frontend: Rose/Red */
 .card-fe:hover {
     border-color: rgba(244, 63, 94, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(244, 63, 94, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(244, 63, 94, 0.2);
 }
-
+.card-fe:hover::before { background: linear-gradient(135deg, #f43f5e, transparent); }
 .card-fe:hover .tech-card-header i {
-    background: rgba(244, 63, 94, 0.2);
-    color: #f43f5e;
-    box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
-}
-
-.card-fe:hover .tech-card-header h3 {
-    color: #f43f5e;
-}
-
-.card-fe:hover .tech-tag:hover {
-    background: rgba(244, 63, 94, 0.15);
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(244, 63, 94, 0.05));
     color: #f43f5e;
     border-color: rgba(244, 63, 94, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+}
+.card-fe:hover .tech-card-header h3 { color: #f43f5e; text-shadow: 0 0 10px rgba(244, 63, 94, 0.4); }
+.card-fe:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), transparent);
+    color: #fff;
+    border-color: #f43f5e;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(244, 63, 94, 0.3);
 }
 
 /* 6. Tools: Indigo */
 .card-tools:hover {
     border-color: rgba(99, 102, 241, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.2);
 }
-
+.card-tools:hover::before { background: linear-gradient(135deg, #6366f1, transparent); }
 .card-tools:hover .tech-card-header i {
-    background: rgba(99, 102, 241, 0.2);
-    color: #6366f1;
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-}
-
-.card-tools:hover .tech-card-header h3 {
-    color: #6366f1;
-}
-
-.card-tools:hover .tech-tag:hover {
-    background: rgba(99, 102, 241, 0.15);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
     color: #6366f1;
     border-color: rgba(99, 102, 241, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+.card-tools:hover .tech-card-header h3 { color: #6366f1; text-shadow: 0 0 10px rgba(99, 102, 241, 0.4); }
+.card-tools:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), transparent);
+    color: #fff;
+    border-color: #6366f1;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
 }
 
 /* 7. CS Fundamentals: Cyan */
 .card-cs:hover {
     border-color: rgba(6, 182, 212, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(6, 182, 212, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(6, 182, 212, 0.2);
 }
-
+.card-cs:hover::before { background: linear-gradient(135deg, #06b6d4, transparent); }
 .card-cs:hover .tech-card-header i {
-    background: rgba(6, 182, 212, 0.2);
-    color: #06b6d4;
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-}
-
-.card-cs:hover .tech-card-header h3 {
-    color: #06b6d4;
-}
-
-.card-cs:hover .tech-tag:hover {
-    background: rgba(6, 182, 212, 0.15);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.05));
     color: #06b6d4;
     border-color: rgba(6, 182, 212, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+.card-cs:hover .tech-card-header h3 { color: #06b6d4; text-shadow: 0 0 10px rgba(6, 182, 212, 0.4); }
+.card-cs:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), transparent);
+    color: #fff;
+    border-color: #06b6d4;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
 }
 
 /* 8. Soft Skills: Yellow/Lime */
 .card-soft:hover {
     border-color: rgba(202, 138, 4, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(202, 138, 4, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(202, 138, 4, 0.2);
 }
-
+.card-soft:hover::before { background: linear-gradient(135deg, #ca8a04, transparent); }
 .card-soft:hover .tech-card-header i {
-    background: rgba(202, 138, 4, 0.2);
-    color: #ca8a04;
-    box-shadow: 0 0 15px rgba(202, 138, 4, 0.4);
-}
-
-.card-soft:hover .tech-card-header h3 {
-    color: #ca8a04;
-}
-
-.card-soft:hover .tech-tag:hover {
-    background: rgba(202, 138, 4, 0.15);
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.2), rgba(202, 138, 4, 0.05));
     color: #ca8a04;
     border-color: rgba(202, 138, 4, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(202, 138, 4, 0.4);
+}
+.card-soft:hover .tech-card-header h3 { color: #ca8a04; text-shadow: 0 0 10px rgba(202, 138, 4, 0.4); }
+.card-soft:hover .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.15), transparent);
+    color: #fff;
+    border-color: #ca8a04;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(202, 138, 4, 0.3);
 }
 
 /* Responsive Grid Adjustments */
 @media (max-width: 1400px) {
     .tech-stack-grid {
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 1200px) {
     .tech-stack-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 1.8rem;
     }
 }
 
@@ -343,5 +367,9 @@
 
     .tech-card {
         padding: 1.5rem;
+    }
+    
+    .section-title-modern {
+        font-size: 2.8rem;
     }
 }
