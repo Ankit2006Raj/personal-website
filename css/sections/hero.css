@@ -236,8 +236,8 @@
 
 .hero-image {
     position: relative;
-    width: 380px;
-    height: 380px;
+    width: min(380px, 80vw);
+    height: min(380px, 80vw);
 }
 
 .profile-container {
@@ -483,10 +483,7 @@
     .hero-content {
         gap: 2.5rem;
     }
-    .hero-image {
-        width: 320px;
-        height: 320px;
-    }
+
     .recruiter-quick-card {
         left: -30px;
     }
@@ -516,10 +513,7 @@
     .hero-image-wrapper {
         order: -1;
     }
-    .hero-image {
-        width: 300px;
-        height: 300px;
-    }
+
     .recruiter-quick-card {
         bottom: -20px;
         left: 50%;
