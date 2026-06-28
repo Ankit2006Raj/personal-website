@@ -372,5 +372,30 @@
         text-align: center;
         gap: 1rem;
     }
+
+    /* Fix project tabs overflow and text wrapping on mobile */
+    .project-tabs-modern {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .project-tabs-modern::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .project-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .project-tab span {
+        white-space: nowrap;
+    }
 }
 

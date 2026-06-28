@@ -133,6 +133,12 @@
         gap: var(--space-xs);
     }
 
+    .project-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
     .cert-filter-btn {
         padding: 0.5rem 1.2rem;
         font-size: var(--font-size-xs);
@@ -197,25 +203,5 @@
 
     .cert-image-container {
         height: 150px !important;
-    }
-
-    /* Fix project tabs overflow on mobile */
-    .project-tabs-modern {
-        max-width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
-
-    .project-tabs-modern::-webkit-scrollbar {
-        display: none; /* Chrome, Safari and Opera */
-    }
-    
-    .project-tab {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
     }
 }
