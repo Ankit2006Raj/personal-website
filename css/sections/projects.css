@@ -373,29 +373,30 @@
         gap: 1rem;
     }
 
-    /* Fix project tabs overflow and text wrapping on mobile */
+    /* Fit both project tabs side-by-side on mobile */
     .project-tabs-modern {
-        max-width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .project-tabs-modern::-webkit-scrollbar {
-        display: none;
+        width: 100%;
+        max-width: 400px;
+        justify-content: space-between;
+        padding: 4px;
+        margin: 0 auto 2.5rem;
     }
     
     .project-tab {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+        flex: 1;
+        padding: 0.6rem 0.2rem;
+        font-size: 0.75rem; /* Smaller font to fit */
+        gap: 0.3rem;
+        justify-content: center;
         white-space: nowrap;
     }
 
     .project-tab span {
         white-space: nowrap;
+    }
+
+    .project-tab .count {
+        display: none; /* Hide count on mobile to save space */
     }
 }
 
