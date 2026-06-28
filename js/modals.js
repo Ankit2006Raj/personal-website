@@ -35,8 +35,8 @@ const projectDatabase = {
         ],
         tags: ["Python", "Streamlit", "NLP", "Pandas", "Matplotlib", "Seaborn"],
         codeSnippet: `import re\nimport pandas as pd\n\ndef parse_chat(file_content):\n    # Regular expression parsing for date, time, user, and text\n    pattern = r'\\[(\\d{2}/\\d{2}/\\d{2}),\\s(\\d{2}:\\d{2}:\\d{2})\\]\\s([^:]+):\\s(.*)'\n    matches = re.findall(pattern, file_content)\n    df = pd.DataFrame(matches, columns=['Date', 'Time', 'User', 'Message'])\n    return df`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://whatshapp-chat-analyser.vercel.app/",
+        githubLink: "https://github.com/Ankit2006Raj/WHATSHAPP_CHAT_ANALYSER"
     },
     'jarvis-ai': {
         title: "Jarvis Voice Assistant",
@@ -52,8 +52,8 @@ const projectDatabase = {
         ],
         tags: ["Python", "Speech Recognition", "NLP", "Pyttsx3", "OS Automation"],
         codeSnippet: `import speech_recognition as sr\nimport pyttsx3\n\ndef listen_command():\n    r = sr.Recognizer()\n    with sr.Microphone() as source:\n        print("Listening...")\n        audio = r.listen(source)\n    try:\n        query = r.recognize_google(audio, language='en-in')\n        return query.lower()\n    except Exception:\n        return "none"`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://www.linkedin.com/posts/ankit2006raj_ai-machinelearning-python-activity-7442059478058909696-N9cs?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAE6kJL4BYOs9H6rWFUKlvkTjP9Xt0M1KCbM&utm_campaign=copy_link",
+        githubLink: "https://github.com/Ankit2006Raj/JARVIS-AI"
     },
     'datavista': {
         title: "DataVista Automation Platform",
@@ -69,8 +69,8 @@ const projectDatabase = {
         ],
         tags: ["Python", "Plotly", "Scikit-Learn", "Dash", "Pandas", "D3.js"],
         codeSnippet: `import pandas as pd\nimport plotly.express as px\n\ndef generate_corr_matrix(df):\n    numeric_df = df.select_dtypes(include=['number'])\n    corr = numeric_df.corr()\n    fig = px.imshow(corr, text_auto=True, title="Correlation Matrix")\n    return fig`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://data-vista-1sag.vercel.app/",
+        githubLink: "https://github.com/Ankit2006Raj/DataVista"
     },
     'ai-health': {
         title: "AI Symptom Analyser",
@@ -86,11 +86,11 @@ const projectDatabase = {
         ],
         tags: ["Flask", "Machine Learning", "Bootstrap", "Python", "Scikit-Learn"],
         codeSnippet: `from flask import Flask, request, jsonify\nimport pickle\n\napp = Flask(__name__)\nmodel = pickle.load(open('medical_model.pkl', 'rb'))\n\n@app.route('/predict', methods=['POST'])\ndef predict():\n    symptoms = request.json['symptoms']\n    prediction = model.predict([symptoms])\n    return jsonify({'condition': prediction[0]})`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://sympto-scan-ai-19pp.vercel.app/",
+        githubLink: "https://github.com/Ankit2006Raj/SymptoScan-AI"
     },
     'house-price': {
-        title: "House Price Prediction Engine",
+        title: "Smart Property",
         categoryText: "Machine Learning",
         keyMetric: "95.8% R² Score",
         image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
@@ -103,8 +103,8 @@ const projectDatabase = {
         ],
         tags: ["Python", "XGBoost", "Scikit-Learn", "Flask", "Pandas"],
         codeSnippet: `from xgboost import XGBRegressor\nfrom sklearn.pipeline import Pipeline\n\ndef train_model(X, y):\n    pipeline = Pipeline([\n        ('scaler', StandardScaler()),\n        ('model', XGBRegressor(n_estimators=100, max_depth=6, learning_rate=0.1))\n    ])\n    pipeline.fit(X, y)\n    return pipeline`,
-        liveLink: "#",
-        githubLink: "https://github.com/Ankit2006Raj"
+        liveLink: "https://smart-property-seven.vercel.app/",
+        githubLink: "https://github.com/Ankit2006Raj/Smart_Property"
     }
 };
 
