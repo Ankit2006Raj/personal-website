@@ -511,9 +511,8 @@
         margin-right: auto;
     }
     .hero-image-wrapper {
-        order: -1;
+        margin-top: 40px;
     }
-
     .recruiter-quick-card {
         bottom: -20px;
         left: 50%;
