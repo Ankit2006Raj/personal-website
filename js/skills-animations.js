@@ -176,12 +176,207 @@ class SkillsSearchFilter {
 }
 
 /* ━━━ 2. SVG Radar Chart Manager ━━━ */
-/* ━━━ 2. SVG Radar Chart Manager (Skeleton) ━━━ */
 class SkillsRadarManager {
     constructor() {
-        console.log("SkillsRadarManager initialized (stub)");
+        this.svg = document.getElementById('skills-radar-svg');
+        if (!this.svg) return;
+
+        this.polygon = document.getElementById('radar-skill-polygon');
+        
+        // Data points (cx, cy coordinates animated)
+        this.points = {
+            ai: document.getElementById('radar-pt-ai'),
+            backend: document.getElementById('radar-pt-backend'),
+            frontend: document.getElementById('radar-pt-frontend'),
+            tools: document.getElementById('radar-pt-tools'),
+            data: document.getElementById('radar-pt-data')
+        };
+
+        this.labels = this.svg.querySelectorAll('.radar-label');
+
+        this.center = 150;
+        this.maxRadius = 100;
+        
+        // Angle offsets in radians matching axes: AI, Backend, Frontend, Tools, Data Science
+        this.angles = [
+            -Math.PI / 2,                          // AI & Deep Learning (Top)
+            -Math.PI / 2 + 2 * Math.PI / 5,         // Backend Systems (Up-Right)
+            -Math.PI / 2 + 4 * Math.PI / 5,         // Frontend & UI (Down-Right)
+            -Math.PI / 2 + 6 * Math.PI / 5,         // DevOps & Infrastructure (Down-Left)
+            -Math.PI / 2 + 8 * Math.PI / 5          // Data Science (Up-Left)
+        ];
+
+        // Ankit Raj Skill Ratings (out of 1.0)
+        this.targetRatings = [0.92, 0.90, 0.85, 0.80, 0.94];
+        this.currentRatings = [0, 0, 0, 0, 0];
+        
+        this.isAnimated = false;
+        this.init();
+    }
+
+    init() {
+        this.setupObservers();
+        this.setupInteractivity();
+    }
+
+    setupObservers() {
+        // Animate radar polygon expansion when scrolled into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.isAnimated) {
+                    this.isAnimated = true;
+                    this.animateChart();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(this.svg);
+    }
+
+    animateChart() {
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        const easeOutElastic = (x) => {
+            const c4 = (2 * Math.PI) / 3;
+            return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+        };
+
+        const tick = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutElastic(progress);
+
+            // Interpolate ratings
+            for (let i = 0; i < 5; i++) {
+                this.currentRatings[i] = this.targetRatings[i] * eased;
+            }
+
+            this.updateDOM();
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            }
+        };
+
+        requestAnimationFrame(tick);
+    }
+
+    updateDOM() {
+        // Calculate coords of the rating polygon vertices
+        const pointsString = this.currentRatings.map((rating, index) => {
+            const angle = this.angles[index];
+            const r = rating * this.maxRadius;
+            const x = this.center + r * Math.cos(angle);
+            const y = this.center + r * Math.sin(angle);
+            return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(' ');
+
+        // Update Polygon points attribute
+        this.polygon.setAttribute('points', pointsString);
+
+        // Update Individual data points dots
+        const ptKeys = ['ai', 'backend', 'frontend', 'tools', 'data'];
+        ptKeys.forEach((key, index) => {
+            const rating = this.currentRatings[index];
+            const angle = this.angles[index];
+            const r = rating * this.maxRadius;
+            const x = this.center + r * Math.cos(angle);
+            const y = this.center + r * Math.sin(angle);
+            
+            if (this.points[key]) {
+                this.points[key].setAttribute('cx', x.toFixed(1));
+                this.points[key].setAttribute('cy', y.toFixed(1));
+            }
+        });
+    }
+
+    setupInteractivity() {
+        // Map radar click/hover tags to scroll-highlight interactions
+        const interactives = [...this.labels, ...Object.values(this.points)];
+
+        interactives.forEach(el => {
+            if (!el) return;
+            const category = el.getAttribute('data-category');
+
+            el.addEventListener('mouseenter', () => {
+                this.highlightLabels(category);
+                this.triggerGroupPreviewGlow(category);
+            });
+
+            el.addEventListener('mouseleave', () => {
+                this.resetLabels();
+                this.removePreviewGlows();
+            });
+
+            el.addEventListener('click', () => {
+                const targetSec = document.getElementById(`sec-${category}`);
+                if (targetSec) {
+                    // Smooth scroll to the category stacked block on the right column
+                    targetSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Activate corresponding filter tab dynamically
+                    const filterBtn = document.querySelector(`.skill-filter-btn[data-filter="${category}"]`);
+                    if (filterBtn) {
+                        filterBtn.click();
+                    }
+                }
+            });
+        });
+    }
+
+    highlightLabels(category) {
+        this.labels.forEach(label => {
+            if (label.getAttribute('data-category') === category) {
+                label.classList.add('highlighted');
+            } else {
+                label.classList.remove('highlighted');
+            }
+        });
+    }
+
+    resetLabels() {
+        this.labels.forEach(label => label.classList.remove('highlighted'));
+    }
+
+    highlightCategoryNodes(category) {
+        this.labels.forEach(label => {
+            if (category === 'all' || label.getAttribute('data-category') === category) {
+                label.style.fill = '#fff';
+            } else {
+                label.style.fill = '#475569';
+            }
+        });
+    }
+
+    triggerGroupPreviewGlow(category) {
+        const targetSec = document.getElementById(`sec-${category}`);
+        if (targetSec) {
+            targetSec.style.transform = 'scale(1.02)';
+            targetSec.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            const cards = targetSec.querySelectorAll('.tech-card-new');
+            cards.forEach(card => {
+                card.style.borderColor = 'rgba(99, 102, 241, 0.3)';
+                card.style.boxShadow = '0 10px 25px rgba(99, 102, 241, 0.06)';
+            });
+        }
+    }
+
+    removePreviewGlows() {
+        const sections = document.querySelectorAll('.skills-section-group');
+        sections.forEach(sec => {
+            sec.style.transform = 'scale(1)';
+            const cards = sec.querySelectorAll('.tech-card-new');
+            cards.forEach(card => {
+                card.style.borderColor = '';
+                card.style.boxShadow = '';
+            });
+        });
     }
 }
+
+/* ━━━ 3. 3D Card Perspective Tilt ━━━ */
 class Skills3DManager {
     constructor() {
         this.canvas = document.getElementById('skills-3d-canvas');
