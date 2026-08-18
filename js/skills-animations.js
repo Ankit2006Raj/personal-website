@@ -8,13 +8,174 @@
  */
 
 /* ━━━ 1. 3D Tag Cloud ━━━ */
-/* ━━━ 1. Search & Category Filter Console (Skeleton) ━━━ */
 class SkillsSearchFilter {
-    constructor(radar) {
-        this.radar = radar;
-        console.log("SkillsSearchFilter initialized (stub)");
+    constructor(radarManager) {
+        this.radarManager = radarManager;
+        this.searchInput = document.getElementById('skills-search-input');
+        this.clearBtn = document.getElementById('skills-search-clear');
+        this.filterButtons = document.querySelectorAll('.skill-filter-btn');
+        this.sections = document.querySelectorAll('.skills-section-group');
+        this.cards = document.querySelectorAll('.tech-card-new');
+        this.noResultsCard = document.getElementById('skills-no-results');
+        this.resetBtn = document.getElementById('skills-reset-search');
+        
+        this.activeFilter = 'all';
+        this.searchQuery = '';
+
+        if (!this.searchInput) return;
+        this.init();
+    }
+
+    init() {
+        // Search Input events
+        this.searchInput.addEventListener('input', (e) => {
+            this.searchQuery = e.target.value.toLowerCase().trim();
+            this.filter();
+        });
+
+        // Clear Search button events
+        this.clearBtn.addEventListener('click', () => {
+            this.searchInput.value = '';
+            this.searchQuery = '';
+            this.searchInput.focus();
+            this.filter();
+        });
+
+        // Category Filter Button events
+        this.filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.activeFilter = btn.getAttribute('data-filter');
+                this.filter();
+            });
+        });
+
+        // Reset Search button events
+        if (this.resetBtn) {
+            this.resetBtn.addEventListener('click', () => {
+                this.searchInput.value = '';
+                this.searchQuery = '';
+                
+                this.filterButtons.forEach(b => b.classList.remove('active'));
+                const allBtn = document.querySelector('.skill-filter-btn[data-filter="all"]');
+                if (allBtn) allBtn.classList.add('active');
+                
+                this.activeFilter = 'all';
+                this.filter();
+            });
+        }
+    }
+
+    filter() {
+        // Toggle Clear button visibility
+        if (this.searchQuery.length > 0) {
+            this.clearBtn.style.display = 'block';
+        } else {
+            this.clearBtn.style.display = 'none';
+        }
+
+        let totalVisibleCards = 0;
+
+        this.sections.forEach(section => {
+            const sectionCategory = section.getAttribute('data-category');
+            const sectionCards = section.querySelectorAll('.tech-card-new');
+            let matchingCardsInSection = 0;
+
+            sectionCards.forEach(card => {
+                const techName = (card.getAttribute('data-tech') || '').toLowerCase();
+                const title = card.querySelector('h4').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const chips = Array.from(card.querySelectorAll('.sub-skill-chip'))
+                                   .map(c => c.textContent.toLowerCase())
+                                   .join(' ');
+
+                // Card matches search text?
+                const matchesSearch = this.searchQuery === '' ||
+                                      techName.includes(this.searchQuery) ||
+                                      title.includes(this.searchQuery) ||
+                                      desc.includes(this.searchQuery) ||
+                                      chips.includes(this.searchQuery);
+
+                // Card matches category filter?
+                const matchesCategory = this.activeFilter === 'all' || sectionCategory === this.activeFilter;
+
+                if (matchesSearch && matchesCategory) {
+                    card.classList.remove('filtered-out');
+                    if (this.searchQuery !== '') {
+                        card.classList.add('search-match');
+                    } else {
+                        card.classList.remove('search-match');
+                    }
+                    matchingCardsInSection++;
+                    totalVisibleCards++;
+                } else {
+                    card.classList.add('filtered-out');
+                    card.classList.remove('search-match');
+                }
+            });
+
+            // Show section if it belongs to current filter category AND has matching cards
+            const sectionBelongsToFilter = this.activeFilter === 'all' || sectionCategory === this.activeFilter;
+            
+            if (sectionBelongsToFilter && matchingCardsInSection > 0) {
+                section.classList.remove('hidden-section');
+                
+                // Update header count badge dynamically
+                const countBadge = section.querySelector('.skills-section-count');
+                if (countBadge) {
+                    countBadge.textContent = `${matchingCardsInSection} Skill${matchingCardsInSection > 1 ? 's' : ''}`;
+                }
+
+                // If progress bars aren't animated yet, trigger animation on newly visible cards
+                this.animateProgressBarsInGroup(section);
+            } else {
+                section.classList.add('hidden-section');
+            }
+        });
+
+        // Show "no results" state if no cards are matched
+        if (totalVisibleCards === 0) {
+            if (this.noResultsCard) this.noResultsCard.style.display = 'flex';
+        } else {
+            if (this.noResultsCard) this.noResultsCard.style.display = 'none';
+        }
+
+        // Highlight SVG radar nodes matching the active filter
+        if (this.radarManager) {
+            this.radarManager.highlightCategoryNodes(this.activeFilter);
+        }
+    }
+
+    animateProgressBarsInGroup(group) {
+        const fills = group.querySelectorAll('.progress-bar-fill');
+        fills.forEach(fill => {
+            if (fill.style.width === '0%' || fill.style.width === '') {
+                const targetWidth = fill.getAttribute('data-target-width') || fill.style.width;
+                if (!fill.getAttribute('data-target-width')) {
+                    // Extract initial style width
+                    const styleWidth = fill.style.width || '0%';
+                    fill.setAttribute('data-target-width', styleWidth);
+                }
+                
+                // Stagger transition
+                fill.style.width = '0%';
+                fill.offsetHeight; // trigger reflow
+                fill.style.transition = 'width 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+                fill.style.width = fill.getAttribute('data-target-width');
+                
+                // Fade in percent indicator
+                const percent = fill.parentElement.querySelector('.progress-percent');
+                if (percent) {
+                    percent.style.opacity = '1';
+                    percent.style.transform = 'translateY(0)';
+                }
+            }
+        });
     }
 }
+
+/* ━━━ 2. SVG Radar Chart Manager ━━━ */
 /* ━━━ 2. SVG Radar Chart Manager (Skeleton) ━━━ */
 class SkillsRadarManager {
     constructor() {
@@ -444,11 +605,12 @@ class ScrollProgressBarAnimator {
 /* ━━━ Bootstrap ━━━ */
 document.addEventListener('DOMContentLoaded', () => {
     const boot = () => {
-        new Skills3DManager();
+        const radar = new SkillsRadarManager();
+        new SkillsSearchFilter(radar);
         new CardTiltManager();
         new ScrollProgressBarAnimator();
     };
-    if (document.getElementById('skills-3d-canvas')) {
+    if (document.getElementById('skills-search-input')) {
         boot();
     } else {
         document.addEventListener('sectionsLoaded', boot);
