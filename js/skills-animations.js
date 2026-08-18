@@ -382,107 +382,61 @@ class CardTiltManager {
 }
 
 /* ━━━ 3. Tab Manager ━━━ */
-class TabManager {
+class ScrollProgressBarAnimator {
     constructor() {
-        this.tabs = document.querySelectorAll('.skill-tab-btn');
-        this.groups = document.querySelectorAll('.skills-category-group');
+        this.progressBars = document.querySelectorAll('.progress-bar-wrap');
         this.init();
     }
 
     init() {
-        this.tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const category = tab.getAttribute('data-category');
-                this.switchTab(tab, category);
-            });
-        });
-
-        // Animate initial tab
-        setTimeout(() => {
-            this.animateProgressBars(document.querySelector('.skills-category-group.active'));
-        }, 500);
-    }
-
-    switchTab(activeTab, category) {
-        this.tabs.forEach(t => t.classList.remove('active'));
-        activeTab.classList.add('active');
-
-        this.groups.forEach(group => {
-            if (group.id === category) {
-                group.style.display = 'block';
-                group.offsetWidth; // trigger reflow
-                group.classList.add('active');
-                this.animateProgressBars(group);
-            } else {
-                group.classList.remove('active');
-                setTimeout(() => {
-                    if (!group.classList.contains('active')) {
-                        group.style.display = 'none';
-                    }
-                }, 500);
-            }
-        });
-    }
-
-    animateProgressBars(group) {
-        if (!group) return;
-        const fills = group.querySelectorAll('.progress-bar-fill');
-        fills.forEach((fill, i) => {
-            const targetWidth = fill.getAttribute('data-target-width') || fill.style.width;
-            if (!fill.getAttribute('data-target-width')) {
-                fill.setAttribute('data-target-width', targetWidth);
-            }
-            fill.style.transition = 'none';
-            fill.style.width = '0%';
-            fill.offsetWidth;
+        this.progressBars.forEach(bar => {
+            const fill = bar.querySelector('.progress-bar-fill');
+            const targetWidth = fill.style.width || '0%';
             
-            // Staggered animation
-            setTimeout(() => {
-                fill.style.transition = `width 1.5s cubic-bezier(0.22, 1, 0.36, 1) ${i * 0.08}s`;
-                fill.style.width = targetWidth;
-            }, 50);
+            // Set data attribute for caching target size, reset visual width to 0% initially
+            fill.setAttribute('data-target-width', targetWidth);
+            fill.style.width = '0%';
+            
+            const percentEl = bar.querySelector('.progress-percent');
+            if (percentEl) {
+                percentEl.style.opacity = '0';
+                percentEl.style.transform = 'translateY(4px)';
+            }
         });
-    }
-}
 
-/* ━━━ 4. Count-Up Stats ━━━ */
-class StatsCountUp {
-    constructor() {
-        this.bar = document.querySelector('.skills-stats-bar');
-        if (!this.bar) return;
-        this.animated = false;
-        this.observe();
-    }
-
-    observe() {
+        // Trigger fill animation when scroll container enters viewport
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !this.animated) {
-                    this.animated = true;
-                    this.countUp();
+                if (entry.isIntersecting) {
+                    this.animateGroup(entry.target);
+                    observer.unobserve(entry.target); // Animate once
                 }
             });
-        }, { threshold: 0.5 });
-        observer.observe(this.bar);
+        }, { threshold: 0.15 });
+
+        // Observe each skill category section
+        document.querySelectorAll('.skills-section-group').forEach(section => {
+            observer.observe(section);
+        });
     }
 
-    countUp() {
-        const numbers = this.bar.querySelectorAll('.stat-number');
-        numbers.forEach(el => {
-            const target = parseInt(el.getAttribute('data-count'), 10);
-            const duration = 2000;
-            const start = performance.now();
-
-            const tick = (now) => {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                // ease-out cubic
-                const eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.round(eased * target) + '+';
-                if (progress < 1) requestAnimationFrame(tick);
-            };
-
-            requestAnimationFrame(tick);
+    animateGroup(group) {
+        const fills = group.querySelectorAll('.progress-bar-fill');
+        fills.forEach((fill, index) => {
+            const targetWidth = fill.getAttribute('data-target-width');
+            
+            // Stagger transition slightly
+            setTimeout(() => {
+                fill.style.transition = 'width 1.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                fill.style.width = targetWidth;
+                
+                const percentEl = fill.parentElement.querySelector('.progress-percent');
+                if (percentEl) {
+                    percentEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    percentEl.style.opacity = '1';
+                    percentEl.style.transform = 'translateY(0)';
+                }
+            }, index * 80);
         });
     }
 }
@@ -492,10 +446,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const boot = () => {
         new Skills3DManager();
         new CardTiltManager();
-        new TabManager();
-        new StatsCountUp();
+        new ScrollProgressBarAnimator();
     };
-
     if (document.getElementById('skills-3d-canvas')) {
         boot();
     } else {
