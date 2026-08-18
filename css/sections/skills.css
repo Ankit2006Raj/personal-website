@@ -786,3 +786,21 @@
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 255, 255, 0.06);
 }
+
+/* ── Card Hover Accents ── */
+.card-glow-ai:hover {
+    border-color: rgba(168, 85, 247, 0.25);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(168, 85, 247, 0.08),
+        inset 0 1px 0 rgba(168, 85, 247, 0.08);
+}
+.card-glow-ai:hover .tech-level { color: var(--accent-ai-light); }
+.card-glow-backend:hover {
+    border-color: rgba(6, 182, 212, 0.25);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(6, 182, 212, 0.08),
+        inset 0 1px 0 rgba(6, 182, 212, 0.08);
+}
+.card-glow-backend:hover .tech-level { color: var(--accent-backend-light); }
