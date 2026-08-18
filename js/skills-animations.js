@@ -527,22 +527,27 @@ class CardTiltManager {
     }
 
     handleMove(e, card) {
+        if (card.classList.contains('filtered-out')) return;
+
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const cx = rect.width / 2;
         const cy = rect.height / 2;
-        const tiltX = (cy - y) / 14;
-        const tiltY = (x - cx) / 14;
-        card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(8px)`;
+        
+        // Tilt coefficient
+        const tiltX = (cy - y) / 10;
+        const tiltY = (x - cx) / 10;
+        
+        card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(5px)`;
     }
 
     handleLeave(card) {
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
     }
 }
 
-/* ━━━ 3. Tab Manager ━━━ */
+/* ━━━ 4. Scroll Progress Bar Animator ━━━ */
 class ScrollProgressBarAnimator {
     constructor() {
         this.progressBars = document.querySelectorAll('.progress-bar-wrap');
