@@ -8,6 +8,19 @@
  */
 
 /* ━━━ 1. 3D Tag Cloud ━━━ */
+/* ━━━ 1. Search & Category Filter Console (Skeleton) ━━━ */
+class SkillsSearchFilter {
+    constructor(radar) {
+        this.radar = radar;
+        console.log("SkillsSearchFilter initialized (stub)");
+    }
+}
+/* ━━━ 2. SVG Radar Chart Manager (Skeleton) ━━━ */
+class SkillsRadarManager {
+    constructor() {
+        console.log("SkillsRadarManager initialized (stub)");
+    }
+}
 class Skills3DManager {
     constructor() {
         this.canvas = document.getElementById('skills-3d-canvas');
