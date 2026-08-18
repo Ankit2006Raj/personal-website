@@ -616,4 +616,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('sectionsLoaded', boot);
     }
 });
-// Step 7 marker
