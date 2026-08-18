@@ -1208,448 +1208,673 @@
         <!-- Stats Bar -->
         <div class="skills-stats-bar" data-aos="fade-up">
             <div class="stat-item">
-                <span class="stat-number" data-count="42">0</span>
+                <span class="stat-number" data-target="42">0</span>
                 <span class="stat-label">Technologies</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-count="4">0</span>
+                <span class="stat-number" data-target="4">0</span>
                 <span class="stat-label">Domains</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-count="15">0</span>
+                <span class="stat-number" data-target="15">0</span>
                 <span class="stat-label">Projects Built</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number" data-count="3">0</span>
+                <span class="stat-number" data-target="3">0</span>
                 <span class="stat-label">Years Coding</span>
             </div>
         </div>
 
         <div class="skills-content-wrapper">
-            <!-- Left Column: Interactive 3D Tag Cloud -->
-            <div class="skills-3d-column" data-aos="fade-right">
-                <div class="skills-canvas-container">
-                    <canvas id="skills-3d-canvas"></canvas>
-                    <div class="canvas-glow-ring"></div>
+            <!-- Left Column: Interactive Search Console & SVG Radar Chart -->
+            <div class="skills-sidebar-column" data-aos="fade-right">
+                <!-- Search & Filters Card -->
+                <div class="skills-console-card">
+                    <div class="card-shine"></div>
+                    <div class="search-wrapper-modern">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="skills-search-input" placeholder="Search tech stack (e.g. PyTorch, React)..." autocomplete="off">
+                        <button id="skills-search-clear" class="search-clear-btn" aria-label="Clear search" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="skills-filters-modern">
+                        <button class="skill-filter-btn active" data-filter="all">
+                            <span class="filter-dot"></span>
+                            <span class="filter-text">All Stack</span>
+                        </button>
+                        <button class="skill-filter-btn" data-filter="ai-ml">
+                            <span class="filter-dot dot-ai"></span>
+                            <span class="filter-text">AI & ML</span>
+                        </button>
+                        <button class="skill-filter-btn" data-filter="backend-db">
+                            <span class="filter-dot dot-backend"></span>
+                            <span class="filter-text">Backend & DB</span>
+                        </button>
+                        <button class="skill-filter-btn" data-filter="frontend-ux">
+                            <span class="filter-dot dot-frontend"></span>
+                            <span class="filter-text">Frontend & UX</span>
+                        </button>
+                        <button class="skill-filter-btn" data-filter="tools-cs">
+                            <span class="filter-dot dot-tools"></span>
+                            <span class="filter-text">Tools & CS</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="canvas-hint">
-                    <i class="fas fa-hand-pointer"></i>
-                    <span>Drag to rotate &bull; Hover to explore</span>
+
+                <!-- SVG Radar Chart Card -->
+                <div class="skills-radar-card">
+                    <div class="card-shine"></div>
+                    <h3 class="radar-title">Expertise Map</h3>
+                    <div class="radar-container">
+                        <svg id="skills-radar-svg" viewBox="0 0 300 300" width="100%" height="100%">
+                            <!-- Outer glow definition -->
+                            <defs>
+                                <radialGradient id="radar-glow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="rgba(99, 102, 241, 0.15)" />
+                                    <stop offset="100%" stop-color="rgba(99, 102, 241, 0)" />
+                                </radialGradient>
+                                <linearGradient id="poly-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(168, 85, 247, 0.6)" />
+                                    <stop offset="50%" stop-color="rgba(6, 182, 212, 0.6)" />
+                                    <stop offset="100%" stop-color="rgba(244, 63, 94, 0.6)" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Background Glow Radial -->
+                            <circle cx="150" cy="150" r="100" fill="url(#radar-glow)" />
+
+                            <!-- Background Grid Rings -->
+                            <circle cx="150" cy="150" r="20" class="radar-grid" />
+                            <circle cx="150" cy="150" r="40" class="radar-grid" />
+                            <circle cx="150" cy="150" r="60" class="radar-grid" />
+                            <circle cx="150" cy="150" r="80" class="radar-grid" />
+                            <circle cx="150" cy="150" r="100" class="radar-grid" />
+
+                            <!-- Axis Lines -->
+                            <!-- AI & Deep Learning (Top) -->
+                            <line x1="150" y1="150" x2="150" y2="50" class="radar-axis-line" />
+                            <!-- Backend (Up-Right) -->
+                            <line x1="150" y1="150" x2="245.1" y2="122.2" class="radar-axis-line" />
+                            <!-- Frontend (Down-Right) -->
+                            <line x1="150" y1="150" x2="208.8" y2="230.9" class="radar-axis-line" />
+                            <!-- Tools & DevOps (Down-Left) -->
+                            <line x1="150" y1="150" x2="91.2" y2="230.9" class="radar-axis-line" />
+                            <!-- Data Science (Up-Left) -->
+                            <line x1="150" y1="150" x2="54.9" y2="122.2" class="radar-axis-line" />
+
+                            <!-- Web of Skills Polygon (Target Coordinates calculated based on scores) -->
+                            <polygon id="radar-skill-polygon" points="150,150 150,150 150,150 150,150 150,150" fill="url(#poly-gradient)" stroke="#6366f1" stroke-width="1.5" />
+
+                            <!-- Data Points (animated dynamically) -->
+                            <circle id="radar-pt-ai" cx="150" cy="150" r="4" class="radar-pt pt-ai" data-category="ai-ml" />
+                            <circle id="radar-pt-backend" cx="150" cy="150" r="4" class="radar-pt pt-backend" data-category="backend-db" />
+                            <circle id="radar-pt-frontend" cx="150" cy="150" r="4" class="radar-pt pt-frontend" data-category="frontend-ux" />
+                            <circle id="radar-pt-tools" cx="150" cy="150" r="4" class="radar-pt pt-tools" data-category="tools-cs" />
+                            <circle id="radar-pt-data" cx="150" cy="150" r="4" class="radar-pt pt-data" data-category="ai-ml" />
+
+                            <!-- Text Labels (Rotated / Positioned for optimal spacing) -->
+                            <text x="150" y="38" class="radar-label" text-anchor="middle" data-category="ai-ml">AI & DL</text>
+                            <text x="252" y="118" class="radar-label" text-anchor="start" data-category="backend-db">Backend</text>
+                            <text x="215" y="246" class="radar-label" text-anchor="start" data-category="frontend-ux">Frontend</text>
+                            <text x="85" y="246" class="radar-label" text-anchor="end" data-category="tools-cs">DevOps</text>
+                            <text x="48" y="118" class="radar-label" text-anchor="end" data-category="ai-ml">Data Sci</text>
+                        </svg>
+                    </div>
+                    <div class="radar-hint">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Hover axes to inspect stack dimensions</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Column: Interactive Tabbed Skills -->
-            <div class="skills-info-column" data-aos="fade-left">
-                <!-- Navigation Tabs -->
-                <div class="skills-tabs">
-                    <button class="skill-tab-btn active" data-category="ai-ml">
-                        <span class="tab-icon-wrap"><i class="fas fa-brain"></i></span>
-                        <span class="tab-text">AI & ML</span>
-                    </button>
-                    <button class="skill-tab-btn" data-category="backend-db">
-                        <span class="tab-icon-wrap"><i class="fas fa-server"></i></span>
-                        <span class="tab-text">Backend & DB</span>
-                    </button>
-                    <button class="skill-tab-btn" data-category="frontend-ux">
-                        <span class="tab-icon-wrap"><i class="fas fa-palette"></i></span>
-                        <span class="tab-text">Frontend & UX</span>
-                    </button>
-                    <button class="skill-tab-btn" data-category="tools-cs">
-                        <span class="tab-icon-wrap"><i class="fas fa-tools"></i></span>
-                        <span class="tab-text">Tools & CS</span>
-                    </button>
-                    <div class="tab-indicator"></div>
-                </div>
-
-                <!-- Tab Groups -->
-                <div class="skills-tab-content">
-                    <!-- Category: AI & ML -->
-                    <div class="skills-category-group active" id="ai-ml">
-                        <div class="tech-grid-new">
-                            <div class="tech-card-new card-glow-ai" data-tech="TensorFlow">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="devicon-tensorflow-original colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>TensorFlow</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Deep learning models, CNNs, RNNs, and custom training loops.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">90%</span>
+            <!-- Right Column: Section-Wise Tech Grids -->
+            <div class="skills-list-column" data-aos="fade-left">
+                
+                <!-- Category: AI & ML -->
+                <div class="skills-section-group" id="sec-ai-ml" data-category="ai-ml">
+                    <div class="skills-section-header">
+                        <div class="skills-section-title-wrap">
+                            <span class="section-category-icon icon-ai"><i class="fas fa-brain"></i></span>
+                            <h3>Artificial Intelligence & Machine Learning</h3>
+                        </div>
+                        <span class="skills-section-count">6 Skills</span>
+                    </div>
+                    <div class="tech-grid-new">
+                        <div class="tech-card-new card-glow-ai" data-tech="TensorFlow">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="devicon-tensorflow-original colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>TensorFlow</h4>
+                                    <span class="tech-level">Advanced</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-ai" data-tech="PyTorch">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="devicon-pytorch-original colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>PyTorch</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Dynamic neural network architectures and model fine-tuning.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">85%</span>
-                                </div>
+                            <p>Deep learning models, CNNs, RNNs, and custom training loops.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">CNNs</span>
+                                <span class="sub-skill-chip">RNNs</span>
+                                <span class="sub-skill-chip">Custom Training</span>
                             </div>
-                            <div class="tech-card-new card-glow-ai" data-tech="Scikit-Learn">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="devicon-python-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Scikit-Learn</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>Supervised & unsupervised ML algorithms, data pipelines.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 95%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">95%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-ai" data-tech="Gen AI">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="fas fa-robot"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Generative AI / LLMs</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Prompt engineering, RAG pipelines, Gemini & OpenAI APIs.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">88%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-ai" data-tech="NLP">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="fas fa-language"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>NLP</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>VADER sentiment analysis, text preprocessing, frequency heatmaps.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">92%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-ai" data-tech="OpenCV">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-ai"><i class="fas fa-eye"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Computer Vision</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>Image transformations, contour detection, OpenCV pipelines.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 84%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
-                                    <span class="progress-percent">84%</span>
-                                </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">90%</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Category: Backend & DB -->
-                    <div class="skills-category-group" id="backend-db">
-                        <div class="tech-grid-new">
-                            <div class="tech-card-new card-glow-backend" data-tech="Flask">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-flask-original colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Flask</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>Microservices, RESTful API design, lightweight backends.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">92%</span>
+                        <div class="tech-card-new card-glow-ai" data-tech="PyTorch">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="devicon-pytorch-original colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>PyTorch</h4>
+                                    <span class="tech-level">Advanced</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-backend" data-tech="FastAPI">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-fastapi-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>FastAPI</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>High-performance async backends with automatic API docs.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">88%</span>
-                                </div>
+                            <p>Dynamic neural network architectures and model fine-tuning.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Deep Learning</span>
+                                <span class="sub-skill-chip">Fine-Tuning</span>
+                                <span class="sub-skill-chip">Lightning</span>
                             </div>
-                            <div class="tech-card-new card-glow-backend" data-tech="Django">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-django-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Django</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>MVC architecture with robust ORM and database managers.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 82%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">82%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-backend" data-tech="Node.js">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-nodejs-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Node.js & Express</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>Event-driven services, middleware routing, and integrations.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 78%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">78%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-backend" data-tech="PostgreSQL">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-postgresql-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>PostgreSQL / MySQL</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Relational schema design, normalization, and complex queries.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 86%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">86%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-backend" data-tech="MongoDB">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-backend"><i class="devicon-mongodb-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>MongoDB / Firebase</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>NoSQL document models, dynamic scaling, cloud data storage.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 80%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
-                                    <span class="progress-percent">80%</span>
-                                </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">85%</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Category: Frontend & UX -->
-                    <div class="skills-category-group" id="frontend-ux">
-                        <div class="tech-grid-new">
-                            <div class="tech-card-new card-glow-frontend" data-tech="React.js">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="devicon-react-original colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>React.js</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Dynamic single-page apps, hook patterns, component libraries.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">85%</span>
+                        <div class="tech-card-new card-glow-ai" data-tech="Scikit-Learn">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="devicon-python-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Scikit-Learn</h4>
+                                    <span class="tech-level">Expert</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-frontend" data-tech="Tailwind CSS">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="devicon-tailwindcss-original colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Tailwind CSS</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Utility-first responsive styling and custom design systems.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">90%</span>
-                                </div>
+                            <p>Supervised & unsupervised ML algorithms, data pipelines.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Regressions</span>
+                                <span class="sub-skill-chip">Classifications</span>
+                                <span class="sub-skill-chip">XGBoost</span>
                             </div>
-                            <div class="tech-card-new card-glow-frontend" data-tech="JavaScript">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="devicon-javascript-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>JavaScript (ES6+)</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>DOM scripting, promise chains, async event-driven architecture.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">92%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-frontend" data-tech="HTML/CSS">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="devicon-html5-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>HTML5 & CSS3</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>Semantic web, responsive grids, keyframe animations, transitions.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 95%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">95%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-frontend" data-tech="Bootstrap">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="devicon-bootstrap-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Bootstrap</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Rapid grid layouts, UI components, cross-browser compatibility.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">88%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-frontend" data-tech="Plotly">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-frontend"><i class="fas fa-chart-bar"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Data Visualization</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>Plotly, Chart.js, Streamlit & Dash interactive dashboards.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 84%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
-                                    <span class="progress-percent">84%</span>
-                                </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 95%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">95%</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Category: Tools & CS -->
-                    <div class="skills-category-group" id="tools-cs">
-                        <div class="tech-grid-new">
-                            <div class="tech-card-new card-glow-tools" data-tech="Docker">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="devicon-docker-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Docker / DevOps</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>Containerization, multi-stage builds, deployment pipelines.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 80%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">80%</span>
+                        <div class="tech-card-new card-glow-ai" data-tech="Gen AI">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="fas fa-robot"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Generative AI / LLMs</h4>
+                                    <span class="tech-level">Advanced</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-tools" data-tech="Git/GitHub">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="devicon-git-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Git & GitHub</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>Branching strategies, GitHub Actions, repository management.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">92%</span>
+                            <p>Prompt engineering, RAG pipelines, Gemini & OpenAI APIs.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">OpenAI</span>
+                                <span class="sub-skill-chip">Gemini</span>
+                                <span class="sub-skill-chip">RAG Pipelines</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">88%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-ai" data-tech="NLP">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="fas fa-language"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>NLP</h4>
+                                    <span class="tech-level">Advanced</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-tools" data-tech="AWS">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="devicon-amazonwebservices-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>AWS Cloud</h4>
-                                        <span class="tech-level">Intermediate</span>
-                                    </div>
-                                </div>
-                                <p>EC2 compute, S3 storage buckets, Lambda, hosting services.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 75%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">75%</span>
+                            <p>VADER sentiment analysis, text preprocessing, frequency heatmaps.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Sentiment Analysis</span>
+                                <span class="sub-skill-chip">SpaCy</span>
+                                <span class="sub-skill-chip">Tokenization</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">92%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-ai" data-tech="OpenCV">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-ai"><i class="fas fa-eye"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Computer Vision</h4>
+                                    <span class="tech-level">Intermediate</span>
                                 </div>
                             </div>
-                            <div class="tech-card-new card-glow-tools" data-tech="DSA">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="fas fa-project-diagram"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>DSA & Fundamentals</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>OOP, Data Structures, Algorithms, and SQL/DBMS fundamentals.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">85%</span>
-                                </div>
+                            <p>Image transformations, contour detection, OpenCV pipelines.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">OpenCV</span>
+                                <span class="sub-skill-chip">Image Processing</span>
+                                <span class="sub-skill-chip">Object Detection</span>
                             </div>
-                            <div class="tech-card-new card-glow-tools" data-tech="Pandas">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="devicon-pandas-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>Pandas & NumPy</h4>
-                                        <span class="tech-level">Expert</span>
-                                    </div>
-                                </div>
-                                <p>DataFrame wrangling, matrix computation, exploratory analysis.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 94%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">94%</span>
-                                </div>
-                            </div>
-                            <div class="tech-card-new card-glow-tools" data-tech="Postman">
-                                <div class="card-shine"></div>
-                                <div class="tech-card-header-new">
-                                    <div class="tech-icon-orb orb-tools"><i class="devicon-postman-plain colored"></i></div>
-                                    <div class="tech-card-title-wrap">
-                                        <h4>VS Code & Postman</h4>
-                                        <span class="tech-level">Advanced</span>
-                                    </div>
-                                </div>
-                                <p>API testing collections, debugging tools, and local setups.</p>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                                    <span class="progress-percent">90%</span>
-                                </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="style: 84%; background: linear-gradient(90deg, #a855f7, #c084fc);"></div>
+                                <span class="progress-percent">84%</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Category: Backend & DB -->
+                <div class="skills-section-group" id="sec-backend-db" data-category="backend-db">
+                    <div class="skills-section-header">
+                        <div class="skills-section-title-wrap">
+                            <span class="section-category-icon icon-backend"><i class="fas fa-server"></i></span>
+                            <h3>Backend & Databases</h3>
+                        </div>
+                        <span class="skills-section-count">6 Skills</span>
+                    </div>
+                    <div class="tech-grid-new">
+                        <div class="tech-card-new card-glow-backend" data-tech="Flask">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-flask-original colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Flask</h4>
+                                    <span class="tech-level">Expert</span>
+                                </div>
+                            </div>
+                            <p>Microservices, RESTful API design, lightweight backends.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">REST APIs</span>
+                                <span class="sub-skill-chip">Blueprints</span>
+                                <span class="sub-skill-chip">Microservices</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">92%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-backend" data-tech="FastAPI">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-fastapi-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>FastAPI</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>High-performance async backends with automatic API docs.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Asynchronous</span>
+                                <span class="sub-skill-chip">Pydantic</span>
+                                <span class="sub-skill-chip">OpenAPI Docs</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">88%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-backend" data-tech="Django">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-django-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Django</h4>
+                                    <span class="tech-level">Intermediate</span>
+                                </div>
+                            </div>
+                            <p>MVC architecture with robust ORM and database managers.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">ORM</span>
+                                <span class="sub-skill-chip">MVC Architecture</span>
+                                <span class="sub-skill-chip">Admin Console</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 82%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">82%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-backend" data-tech="Node.js">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-nodejs-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Node.js & Express</h4>
+                                    <span class="tech-level">Intermediate</span>
+                                </div>
+                            </div>
+                            <p>Event-driven services, middleware routing, and integrations.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Express.js</span>
+                                <span class="sub-skill-chip">Middlewares</span>
+                                <span class="sub-skill-chip">Async Flow</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 78%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">78%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-backend" data-tech="PostgreSQL">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-postgresql-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>PostgreSQL / MySQL</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>Relational schema design, normalization, and complex queries.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Schema Design</span>
+                                <span class="sub-skill-chip">Indexing & Joins</span>
+                                <span class="sub-skill-chip">Optimization</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 86%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">86%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-backend" data-tech="MongoDB">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-backend"><i class="devicon-mongodb-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>MongoDB / Firebase</h4>
+                                    <span class="tech-level">Intermediate</span>
+                                </div>
+                            </div>
+                            <p>NoSQL document models, dynamic scaling, cloud data storage.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">NoSQL Models</span>
+                                <span class="sub-skill-chip">Collections</span>
+                                <span class="sub-skill-chip">Real-time DB</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 80%; background: linear-gradient(90deg, #06b6d4, #22d3ee);"></div>
+                                <span class="progress-percent">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Frontend & UX -->
+                <div class="skills-section-group" id="sec-frontend-ux" data-category="frontend-ux">
+                    <div class="skills-section-header">
+                        <div class="skills-section-title-wrap">
+                            <span class="section-category-icon icon-frontend"><i class="fas fa-palette"></i></span>
+                            <h3>Frontend & UI/UX</h3>
+                        </div>
+                        <span class="skills-section-count">6 Skills</span>
+                    </div>
+                    <div class="tech-grid-new">
+                        <div class="tech-card-new card-glow-frontend" data-tech="React.js">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="devicon-react-original colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>React.js</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>Dynamic single-page apps, hook patterns, component libraries.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Hooks & Context</span>
+                                <span class="sub-skill-chip">SPAs</span>
+                                <span class="sub-skill-chip">State Mgmt</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">85%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-frontend" data-tech="Tailwind CSS">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="devicon-tailwindcss-original colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Tailwind CSS</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>Utility-first responsive styling and custom design systems.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Utility First</span>
+                                <span class="sub-skill-chip">Grid/Flexbox</span>
+                                <span class="sub-skill-chip">Responsive Design</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">90%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-frontend" data-tech="JavaScript">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="devicon-javascript-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>JavaScript (ES6+)</h4>
+                                    <span class="tech-level">Expert</span>
+                                </div>
+                            </div>
+                            <p>DOM scripting, promise chains, async event-driven architecture.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">ES6+ syntax</span>
+                                <span class="sub-skill-chip">Async/Await</span>
+                                <span class="sub-skill-chip">DOM Manipulation</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">92%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-frontend" data-tech="HTML/CSS">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="devicon-html5-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>HTML5 & CSS3</h4>
+                                    <span class="tech-level">Expert</span>
+                                </div>
+                            </div>
+                            <p>Semantic web, responsive grids, keyframe animations, transitions.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Semantic HTML</span>
+                                <span class="sub-skill-chip">CSS Animations</span>
+                                <span class="sub-skill-chip">Flexbox / Grids</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 95%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">95%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-frontend" data-tech="Bootstrap">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="devicon-bootstrap-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Bootstrap</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>Rapid grid layouts, UI components, cross-browser compatibility.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Rapid Grid</span>
+                                <span class="sub-skill-chip">UI Kits</span>
+                                <span class="sub-skill-chip">Cross Browser</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 88%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">88%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-frontend" data-tech="Plotly">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-frontend"><i class="fas fa-chart-bar"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Data Visualization</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>Plotly, Chart.js, Streamlit & Dash interactive dashboards.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Streamlit & Dash</span>
+                                <span class="sub-skill-chip">Plotly & Chart.js</span>
+                                <span class="sub-skill-chip">Dashboards</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 84%; background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+                                <span class="progress-percent">84%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Tools & CS -->
+                <div class="skills-section-group" id="sec-tools-cs" data-category="tools-cs">
+                    <div class="skills-section-header">
+                        <div class="skills-section-title-wrap">
+                            <span class="section-category-icon icon-tools"><i class="fas fa-tools"></i></span>
+                            <h3>Tools & DevOps</h3>
+                        </div>
+                        <span class="skills-section-count">6 Skills</span>
+                    </div>
+                    <div class="tech-grid-new">
+                        <div class="tech-card-new card-glow-tools" data-tech="Docker">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="devicon-docker-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Docker / DevOps</h4>
+                                    <span class="tech-level">Intermediate</span>
+                                </div>
+                            </div>
+                            <p>Containerization, multi-stage builds, deployment pipelines.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Containers</span>
+                                <span class="sub-skill-chip">Docker Compose</span>
+                                <span class="sub-skill-chip">CI/CD Flows</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 80%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">80%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-tools" data-tech="Git/GitHub">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="devicon-git-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Git & GitHub</h4>
+                                    <span class="tech-level">Expert</span>
+                                </div>
+                            </div>
+                            <p>Branching strategies, GitHub Actions, repository management.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Actions & CI/CD</span>
+                                <span class="sub-skill-chip">Git Flow</span>
+                                <span class="sub-skill-chip">PR Reviews</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 92%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">92%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-tools" data-tech="AWS">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="devicon-amazonwebservices-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>AWS Cloud</h4>
+                                    <span class="tech-level">Intermediate</span>
+                                </div>
+                            </div>
+                            <p>EC2 compute, S3 storage buckets, Lambda, hosting services.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">EC2 & S3</span>
+                                <span class="sub-skill-chip">Serverless Lambda</span>
+                                <span class="sub-skill-chip">IAM Security</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 75%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">75%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-tools" data-tech="DSA">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="fas fa-project-diagram"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>DSA & Fundamentals</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>OOP, Data Structures, Algorithms, and SQL/DBMS fundamentals.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">OOP Patterns</span>
+                                <span class="sub-skill-chip">Complexity</span>
+                                <span class="sub-skill-chip">DBMS Core</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">85%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-tools" data-tech="Pandas">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="devicon-pandas-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>Pandas & NumPy</h4>
+                                    <span class="tech-level">Expert</span>
+                                </div>
+                            </div>
+                            <p>DataFrame wrangling, matrix computation, exploratory analysis.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">Data Wrangling</span>
+                                <span class="sub-skill-chip">Matrix Math</span>
+                                <span class="sub-skill-chip">Data Cleansing</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 94%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">94%</span>
+                            </div>
+                        </div>
+                        <div class="tech-card-new card-glow-tools" data-tech="Postman">
+                            <div class="card-shine"></div>
+                            <div class="tech-card-header-new">
+                                <div class="tech-icon-orb orb-tools"><i class="devicon-postman-plain colored"></i></div>
+                                <div class="tech-card-title-wrap">
+                                    <h4>VS Code & Postman</h4>
+                                    <span class="tech-level">Advanced</span>
+                                </div>
+                            </div>
+                            <p>API testing collections, debugging tools, and local setups.</p>
+                            <div class="sub-skills-wrap">
+                                <span class="sub-skill-chip">API Collection</span>
+                                <span class="sub-skill-chip">Workspaces</span>
+                                <span class="sub-skill-chip">Toolchains</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: 90%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
+                                <span class="progress-percent">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results State -->
+                <div id="skills-no-results" class="skills-no-results-card" style="display: none;">
+                    <i class="fas fa-search-minus no-results-icon"></i>
+                    <h4>No matching technologies found</h4>
+                    <p>Try searching for a different skill, framework, or language.</p>
+                    <button id="skills-reset-search" class="btn btn-secondary btn-sm">Reset Search</button>
+                </div>
+
             </div>
         </div>
     </div>
