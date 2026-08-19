@@ -524,6 +524,18 @@ function setupSkillsRedesign() {
                 ? `Used in: ${projects.join(', ')}` 
                 : `${techName} — ${level}`;
             
+            // Add Project Badge to Detailed Card
+            if (projectCount > 0) {
+                const titleWrap = card.querySelector('.tech-card-title-wrap');
+                if (titleWrap && !card.querySelector('.tech-projects-badge')) {
+                    const projBadge = document.createElement('div');
+                    projBadge.className = 'tech-projects-badge';
+                    projBadge.setAttribute('title', projectTooltip);
+                    projBadge.innerHTML = `<i class="fas fa-folder-open"></i> <span>	h${projectCount} Project${projectCount > 1 ? 's' : ''}</span>`;
+                    titleWrap.appendChild(projBadge);
+                }
+            }
+            
             // Create Compact Badge
             const badge = document.createElement('div');
             badge.className = `compact-tech-badge card-glow-${category}`;
