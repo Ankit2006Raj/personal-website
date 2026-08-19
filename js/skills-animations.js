@@ -499,6 +499,57 @@ class ScrollProgressBarAnimator {
 }
 
 function setupSkillsRedesign() {
+    // 2. Append project counts to detailed cards & dynamically build compact grids
+    const sections = document.querySelectorAll('.skills-section-group');
+    sections.forEach(section => {
+        const category = section.getAttribute('data-category');
+        const techGrid = section.querySelector('.tech-grid-new');
+        if (!techGrid) return;
+        
+        // Create compact grid container
+        const compactGrid = document.createElement('div');
+        compactGrid.className = 'compact-grid-new';
+        compactGrid.style.display = 'none';
+        
+        const cards = techGrid.querySelectorAll('.tech-card-new');
+        cards.forEach(card => {
+            const techName = card.getAttribute('data-tech') || card.querySelector('h4').textContent.trim();
+            const iconHtml = card.querySelector('.tech-icon-orb').innerHTML;
+            const level = card.querySelector('.tech-level').textContent.trim();
+            
+            // Project Association Map
+            const projects = techProjectsMap[techName] || [];
+            const projectCount = projects.length;
+            const projectTooltip = projectCount > 0 
+                ? `Used in: ${projects.join(', ')}` 
+                : `${techName} — ${level}`;
+            
+            // Create Compact Badge
+            const badge = document.createElement('div');
+            badge.className = `compact-tech-badge card-glow-${category}`;
+            badge.setAttribute('data-tech', techName);
+            badge.setAttribute('title', projectTooltip);
+            
+            badge.innerHTML = `
+                <div class="badge-icon-wrap">${iconHtml}</div>
+                <div class="badge-text-wrap">
+                    <span class="badge-name">${techName}</span>
+                    <span class="badge-level-tag">${level}</span>
+                </div>
+                ${projectCount > 0 ? `
+                <div class="badge-projects-count" title="${projectTooltip}">
+                    <i class="fas fa-folder-open"></i>
+                    <span>${projectCount}</span>
+                </div>
+                ` : ''}
+            `;
+            
+            compactGrid.appendChild(badge);
+        });
+        
+        // Insert compactGrid right next to techGrid
+        techGrid.parentNode.insertBefore(compactGrid, techGrid.nextSibling);
+    });
     // 3. Bind View Switcher Tab Buttons
     const toggleContainer = document.querySelector('.skills-view-toggle-container');
     const skillsSection = document.getElementById('skills');
