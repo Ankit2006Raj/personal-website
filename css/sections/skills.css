@@ -598,11 +598,9 @@
 }
 
 /* Cards that don't match search results */
-.tech-card-new.filtered-out {
-    opacity: 0.12;
-    filter: blur(1.5px);
-    pointer-events: none;
-    transform: scale(0.95);
+.tech-card-new.filtered-out,
+.compact-tech-badge.filtered-out {
+    display: none !important;
 }
 
 .tech-card-new.search-match {
