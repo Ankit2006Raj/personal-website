@@ -1228,6 +1228,18 @@
             </div>
         </div>
 
+        <!-- View Mode Toggle -->
+        <div class="skills-view-toggle-container" data-aos="fade-up">
+            <div class="skills-view-toggle">
+                <button class="view-toggle-btn active" data-view="detailed" aria-label="Detailed Cards View">
+                    <i class="fas fa-th-large"></i> Detailed Cards
+                </button>
+                <button class="view-toggle-btn" data-view="compact" aria-label="Quick Scan View">
+                    <i class="fas fa-tags"></i> Quick Scan Grid
+                </button>
+            </div>
+        </div>
+
         <div class="skills-content-wrapper">
             <!-- Left Column: Interactive Search Console & SVG Radar Chart -->
             <div class="skills-sidebar-column" data-aos="fade-right">
@@ -1297,15 +1309,15 @@
 
                             <!-- Axis Lines -->
                             <!-- AI & Deep Learning (Top) -->
-                            <line x1="150" y1="150" x2="150" y2="50" class="radar-axis-line" />
+                            <line x1="150" y1="150" x2="150" y2="50" class="radar-axis-line" data-category="ai-ml" />
                             <!-- Backend (Up-Right) -->
-                            <line x1="150" y1="150" x2="245.1" y2="122.2" class="radar-axis-line" />
+                            <line x1="150" y1="150" x2="245.1" y2="122.2" class="radar-axis-line" data-category="backend-db" />
                             <!-- Frontend (Down-Right) -->
-                            <line x1="150" y1="150" x2="208.8" y2="230.9" class="radar-axis-line" />
+                            <line x1="150" y1="150" x2="208.8" y2="230.9" class="radar-axis-line" data-category="frontend-ux" />
                             <!-- Tools & DevOps (Down-Left) -->
-                            <line x1="150" y1="150" x2="91.2" y2="230.9" class="radar-axis-line" />
+                            <line x1="150" y1="150" x2="91.2" y2="230.9" class="radar-axis-line" data-category="tools-cs" />
                             <!-- Data Science (Up-Left) -->
-                            <line x1="150" y1="150" x2="54.9" y2="122.2" class="radar-axis-line" />
+                            <line x1="150" y1="150" x2="54.9" y2="122.2" class="radar-axis-line" data-category="ai-ml" />
 
                             <!-- Web of Skills Polygon (Target Coordinates calculated based on scores) -->
                             <polygon id="radar-skill-polygon" points="150,150 150,150 150,150 150,150 150,150" fill="url(#poly-gradient)" stroke="#6366f1" stroke-width="1.5" />
