@@ -1012,3 +1012,50 @@
         grid-template-columns: 1fr;
     }
 }
+
+.compact-tech-badge {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.compact-tech-badge .badge-icon-wrap {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.compact-tech-badge .badge-text-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.compact-tech-badge .badge-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.compact-tech-badge .badge-level-tag {
+    font-size: 0.58rem;
+    font-family: 'Fira Code', monospace;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.05rem;
+    transition: color 0.3s ease;
+}
