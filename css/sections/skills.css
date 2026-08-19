@@ -1105,3 +1105,41 @@
 }
 .compact-tech-badge.card-glow-tools:hover .badge-level-tag { color: var(--accent-tools-light); }
 .compact-tech-badge.card-glow-tools:hover .badge-projects-count { color: var(--accent-tools-light); border-color: rgba(16, 185, 129, 0.15); }
+
+/* Project Badge in Detailed Cards */
+.tech-projects-badge {
+    font-size: 0.65rem;
+    font-family: 'Fira Code', monospace;
+    color: #475569;
+    margin-top: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.tech-card-new:hover .tech-projects-badge {
+    color: #94a3b8;
+}
+
+.card-glow-ai:hover .tech-projects-badge { color: var(--accent-ai-light); }
+.card-glow-backend:hover .tech-projects-badge { color: var(--accent-backend-light); }
+.card-glow-frontend:hover .tech-projects-badge { color: var(--accent-frontend-light); }
+.card-glow-tools:hover .tech-projects-badge { color: var(--accent-tools-light); }
+
+/* Toggle Switching Layouts */
+.skills-premium.view-compact .tech-grid-new {
+    display: none !important;
+}
+
+.skills-premium.view-compact .compact-grid-new {
+    display: grid !important;
+}
+
+.skills-premium.view-detailed .tech-grid-new {
+    display: grid !important;
+}
+
+.skills-premium.view-detailed .compact-grid-new {
+    display: none !important;
+}
