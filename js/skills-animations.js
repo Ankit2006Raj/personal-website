@@ -368,11 +368,46 @@ class SkillsRadarManager {
     }
 
     highlightCategoryNodes(category) {
+        // Highlight labels
         this.labels.forEach(label => {
             if (category === 'all' || label.getAttribute('data-category') === category) {
                 label.style.fill = '#fff';
+                label.style.fontWeight = 'bold';
             } else {
                 label.style.fill = '#475569';
+                label.style.fontWeight = 'normal';
+            }
+        });
+
+        // Highlight dots
+        Object.keys(this.points).forEach(key => {
+            const pt = this.points[key];
+            if (!pt) return;
+            const ptCat = pt.getAttribute('data-category');
+            if (category === 'all' || ptCat === category) {
+                pt.style.opacity = '1';
+                pt.style.transform = 'scale(1.3)';
+                pt.style.transformOrigin = 'center';
+                pt.style.transition = 'all 0.3s ease';
+            } else {
+                pt.style.opacity = '0.3';
+                pt.style.transform = 'scale(1)';
+                pt.style.transition = 'all 0.3s ease';
+            }
+        });
+
+        // Highlight axis lines
+        const axisLines = this.svg.querySelectorAll('.radar-axis-line');
+        axisLines.forEach(line => {
+            const lineCat = line.getAttribute('data-category');
+            if (category === 'all' || lineCat === category) {
+                line.style.stroke = 'rgba(99, 102, 241, 0.5)';
+                line.style.strokeWidth = '1.5';
+                line.style.transition = 'all 0.3s ease';
+            } else {
+                line.style.stroke = 'rgba(255, 255, 255, 0.04)';
+                line.style.strokeWidth = '0.75';
+                line.style.transition = 'all 0.3s ease';
             }
         });
     }
