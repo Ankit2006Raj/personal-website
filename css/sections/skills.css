@@ -939,3 +939,27 @@
         padding: 1rem;
     }
 }
+
+/* ========================================
+   SKILLS REDESIGN — VIEW SWITCHER & COMPACT TAG GRID
+   ======================================== */
+
+/* View Mode Toggle */
+.skills-view-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.skills-view-toggle {
+    display: inline-flex;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.25rem;
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+}
