@@ -899,6 +899,10 @@
 }
 
 @media (max-width: 768px) {
+    .skills-radar-card {
+        display: none;
+    }
+
     .skills-sidebar-column {
         grid-template-columns: 1fr;
     }
