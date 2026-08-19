@@ -109,7 +109,9 @@ class SkillsSearchFilter {
             const sectionCards = section.querySelectorAll('.tech-card-new');
             let matchingCardsInSection = 0;
 
-            sectionCards.forEach(card => {
+            const sectionBadges = section.querySelectorAll('.compact-tech-badge');
+            sectionCards.forEach((card, index) => {
+                const badge = sectionBadges[index];
                 const techName = (card.getAttribute('data-tech') || '').toLowerCase();
                 const title = card.querySelector('h4').textContent.toLowerCase();
                 const desc = card.querySelector('p').textContent.toLowerCase();
@@ -129,6 +131,7 @@ class SkillsSearchFilter {
 
                 if (matchesSearch && matchesCategory) {
                     card.classList.remove('filtered-out');
+                    if (badge) badge.classList.remove('filtered-out');
                     if (this.searchQuery !== '') {
                         card.classList.add('search-match');
                     } else {
@@ -138,6 +141,7 @@ class SkillsSearchFilter {
                     totalVisibleCards++;
                 } else {
                     card.classList.add('filtered-out');
+                    if (badge) badge.classList.add('filtered-out');
                     card.classList.remove('search-match');
                 }
             });
@@ -534,6 +538,17 @@ class ScrollProgressBarAnimator {
 }
 
 function setupSkillsRedesign() {
+    // 1. Dynamic Technologies Counter
+    const techCounter = document.querySelector('.skills-stats-bar .stat-item:first-child .stat-number');
+    const totalCards = document.querySelectorAll('.tech-card-new');
+    if (techCounter && totalCards.length > 0) {
+        techCounter.setAttribute('data-target', totalCards.length);
+        // Also update text content if it's already animated
+        if (techCounter.textContent !== '0') {
+            techCounter.textContent = totalCards.length;
+        }
+    }
+
     // 2. Append project counts to detailed cards & dynamically build compact grids
     const sections = document.querySelectorAll('.skills-section-group');
     sections.forEach(section => {
@@ -624,6 +639,7 @@ function setupSkillsRedesign() {
 /* ━━━ Bootstrap ━━━ */
 document.addEventListener('DOMContentLoaded', () => {
     const boot = () => {
+        setupSkillsRedesign();
         const radar = new SkillsRadarManager();
         new SkillsSearchFilter(radar);
         new CardTiltManager();
