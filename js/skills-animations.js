@@ -7,6 +7,33 @@
  * 4. ScrollProgressBarAnimator: Staggered animation of progress bars when scrolled into view
  */
 
+const techProjectsMap = {
+    'TensorFlow': ['GlucoGuard AI'],
+    'PyTorch': ['AI Symptom Analyser', 'GlucoGuard AI', 'Language Translator'],
+    'Scikit-Learn': ['AI Symptom Analyser', 'Smart Property', 'GlucoGuard AI'],
+    'Gen AI': ['ResumeInsight Platform'],
+    'NLP': ['WhatsApp Chat Analyser'],
+    'OpenCV': ['AI Symptom Analyser'],
+    'Flask': ['ResumeInsight Platform'],
+    'FastAPI': ['AgriSuper'],
+    'Django': ['ResumeInsight Platform'],
+    'Node.js': ['AgriSuper'],
+    'PostgreSQL': ['ResumeInsight Platform'],
+    'MongoDB': ['AgriSuper'],
+    'React.js': ['DataVista Analytics'],
+    'Tailwind CSS': ['Developer Portfolio'],
+    'JavaScript': ['Developer Portfolio', 'CalcHub', 'Weather Dashboard'],
+    'HTML/CSS': ['Developer Portfolio', 'CalcHub', 'Weather Dashboard'],
+    'Bootstrap': ['Developer Portfolio'],
+    'Plotly': ['DataVista Analytics'],
+    'Docker': ['ResumeInsight Platform'],
+    'Git/GitHub': ['Developer Portfolio', 'WhatsApp Chat Analyser'],
+    'AWS': ['ResumeInsight Platform'],
+    'DSA': ['CalcHub', 'AgriSuper'],
+    'Pandas': ['WhatsApp Chat Analyser', 'DataVista Analytics'],
+    'Postman': ['AgriSuper', 'ResumeInsight Platform']
+};
+
 /* ━━━ 1. Search & Category Filter Console ━━━ */
 class SkillsSearchFilter {
     constructor(radarManager) {
