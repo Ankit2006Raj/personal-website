@@ -498,6 +498,31 @@ class ScrollProgressBarAnimator {
     }
 }
 
+function setupSkillsRedesign() {
+    // 3. Bind View Switcher Tab Buttons
+    const toggleContainer = document.querySelector('.skills-view-toggle-container');
+    const skillsSection = document.getElementById('skills');
+    if (toggleContainer && skillsSection) {
+        const toggleButtons = toggleContainer.querySelectorAll('.view-toggle-btn');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const view = btn.getAttribute('data-view');
+                if (view === 'compact') {
+                    skillsSection.classList.remove('view-detailed');
+                    skillsSection.classList.add('view-compact');
+                } else {
+                    skillsSection.classList.remove('view-compact');
+                    skillsSection.classList.add('view-detailed');
+                }
+            });
+        });
+        // Add default class
+        skillsSection.classList.add('view-detailed');
+    }
+}
+
 /* ━━━ Bootstrap ━━━ */
 document.addEventListener('DOMContentLoaded', () => {
     const boot = () => {
