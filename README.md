@@ -18,7 +18,6 @@ This portfolio serves as my digital resume and a centralized hub for my work. It
 
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+)
 - **Hosting/Deployment:** GitHub Pages / Vercel *(Update as needed)*
-- *(Add any other specific libraries or frameworks you used in your code)*
 
 ## 🌐 Live Website
 
