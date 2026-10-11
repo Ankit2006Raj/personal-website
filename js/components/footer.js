@@ -128,10 +128,14 @@
     });
 
     // ===== FOOTER YEAR AUTO-UPDATE =====
-    const copyrightYear = document.querySelector('.footer-copyright p');
-    if (copyrightYear) {
-        const currentYear = new Date().getFullYear();
-        copyrightYear.innerHTML = copyrightYear.innerHTML.replace('2024', currentYear);
+    const currentYearEl = document.getElementById('currentYear');
+    if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+    } else {
+        const copyrightYear = document.querySelector('.footer-copyright p');
+        if (copyrightYear) {
+            copyrightYear.innerHTML = copyrightYear.innerHTML.replace(/\b20\d{2}\b/, new Date().getFullYear());
+        }
     }
 
     // ===== CONSOLE EASTER EGG =====
