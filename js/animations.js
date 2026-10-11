@@ -18,6 +18,8 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('stat-number')) {
                 animateCounter(entry.target);
             }
+
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
