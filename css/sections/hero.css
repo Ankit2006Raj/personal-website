@@ -175,56 +175,6 @@
     border-radius: 50%;
     font-size: 1.2rem;
 }
-
-/* Hero Metrics Styling */
-.hero-metrics {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--glass-border);
-    padding: 1.5rem 2rem;
-    border-radius: var(--border-radius-md);
-    max-width: fit-content;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-}
-
-.hero-metric-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-}
-
-.metric-num-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.hero-metric-item .num {
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: 'Fira Code', monospace;
-}
-
-.hero-metric-item .lbl {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-.hero-metric-divider {
-    width: 1px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
 /* Right Column: Profile & Floating Cards */
 .hero-image-wrapper {
     display: flex;
@@ -506,10 +456,6 @@
     .hero-buttons {
         justify-content: center;
     }
-    .hero-metrics {
-        margin-left: auto;
-        margin-right: auto;
-    }
     .hero-image-wrapper {
         margin-top: 40px;
     }
@@ -540,17 +486,6 @@
     }
     .hero-description {
         font-size: 1rem;
-    }
-    .hero-metrics {
-        flex-direction: column;
-        gap: 1.2rem;
-        padding: 1.2rem;
-        width: 100%;
-        max-width: 320px;
-    }
-    .hero-metric-divider {
-        width: 80%;
-        height: 1px;
     }
     .recruiter-quick-card {
         width: 260px;
