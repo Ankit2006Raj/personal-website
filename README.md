@@ -21,14 +21,17 @@ This portfolio serves as my digital resume and a centralized hub for my work. It
 
 ## 🌐 Live Website
 
-🔗 **[View My Portfolio Live Here](#)** *(Replace '#' with your actual deployed website link)*
+🔗 **[View My Portfolio Live Here](https://ankit2006raj.github.io/personal-website/)**
 
 ## 📫 Let's Connect!
 
 I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
 
-- **LinkedIn:** [Insert your LinkedIn Profile URL]
-- **Email:** [Insert your Email Address]
+- **LinkedIn:** [Ankit Raj](https://www.linkedin.com/in/ankit-raj-226a36309)
+- **GitHub:** [Ankit2006Raj](https://github.com/Ankit2006Raj)
+- **LeetCode:** [Ankit2006Raj](https://leetcode.com/u/Ankit2006Raj/)
+- **HackerRank:** [ankit9905163014](https://www.hackerrank.com/profile/ankit9905163014)
+- **Email:** [ankit9905163014@gmail.com](mailto:ankit9905163014@gmail.com)
 
 ---
 ⭐️ *If you found this interesting or helpful, feel free to give the repository a star!*
