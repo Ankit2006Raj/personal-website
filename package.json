@@ -1,0 +1,18 @@
+{
+  "name": "ankitraj-portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio of Ankit Raj - AI & Machine Learning Engineer",
+  "private": true,
+  "scripts": {
+    "build": "node compile.js",
+    "test": "node compile.js"
+  },
+  "keywords": [
+    "portfolio",
+    "ai",
+    "machine-learning",
+    "web"
+  ],
+  "author": "Ankit Raj",
+  "license": "MIT"
+}
