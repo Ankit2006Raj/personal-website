@@ -52,15 +52,19 @@ function initCounterAnimations() {
     const counters = document.querySelectorAll('.metric-value, .cert-number');
 
     const animateCounter = (element) => {
-        const target = parseFloat(element.textContent);
-        const isDecimal = element.textContent.includes('.');
-        const isPercentage = element.textContent.includes('%');
-        const hasPlus = element.textContent.includes('+');
+        const rawText = element.textContent.trim();
+        const target = parseFloat(rawText);
+        if (isNaN(target)) return;
+
+        const isDecimal = rawText.includes('.');
+        const isPercentage = rawText.includes('%');
+        const hasPlus = rawText.includes('+');
 
         let current = 0;
-        const increment = target / 50;
+        const steps = 50;
+        const increment = target / steps;
         const duration = 1500;
-        const stepTime = duration / 50;
+        const stepTime = duration / steps;
 
         const timer = setInterval(() => {
             current += increment;
@@ -77,10 +81,11 @@ function initCounterAnimations() {
         }, stepTime);
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
                 entry.target.classList.add('counted');
+                obs.unobserve(entry.target);
                 animateCounter(entry.target);
             }
         });
