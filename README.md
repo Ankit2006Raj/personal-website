@@ -14,6 +14,13 @@ This portfolio serves as my digital resume and a centralized hub for my work. It
 - **📜 Certifications:** Professional credentials and courses that validate my continuous learning in the tech space.
 - **🎓 Professional Journey:** My trajectory as a Computer Science student, highlighting key learnings, milestones, and experiences.
 
+### 🎓 Academic Background
+
+- **B.Tech in Computer Science & Engineering (AI & ML)** — Maharishi Markandeshwar University
+  - **CGPA:** `8.67` | *Top Performer*
+- **Diploma in Computer Science & Engineering**
+  - **CGPA:** `8.75` | *Distinction*
+
 ## 🛠️ Technologies Used
 
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+)
